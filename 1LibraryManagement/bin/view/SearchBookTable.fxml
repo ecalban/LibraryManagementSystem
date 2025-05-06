@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox stylesheets="@../css/tableView.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SearchBookTableController">
+   <children>
+      <TableView fx:id="searchBookTable" prefHeight="438.0" prefWidth="900.0" styleClass="searchBookTable" stylesheets="@../css/tableView.css">
+        <columns>
+			<TableColumn fx:id="bookIdColumn" prefWidth="81.60000455379486" text="Book ID" />
+			<TableColumn fx:id="bookTitleColumn" prefWidth="145.0" text="Book Title" />
+			<TableColumn fx:id="bookAuthorColumn" prefWidth="145.0" text="Author" />
+			<TableColumn fx:id="bookDescriptionColumn" prefWidth="317.6000671386719" text="Description" />
+			<TableColumn fx:id="bookCategoryColumn" prefWidth="105.59991455078125" text="Category" />	
+			<TableColumn fx:id="bookStatusColumn" prefWidth="102.4000244140625" text="Status" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>

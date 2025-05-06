@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="350.0" prefWidth="740.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ApproveTableController">
+   <children>
+      <AnchorPane layoutX="19.0" prefHeight="350.0" prefWidth="694.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 6px; -fx-border-radius: 6px;">
+         <children>
+            <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Students registered in the library system" wrappingWidth="500.0" />
+            <AnchorPane layoutY="32.0" prefHeight="318.0" prefWidth="694.0" style="-fx-background-color: #eaeaea; -fx-background-radius: 0 0 6 6; -fx-border-radius: 0 0 6 6;">
+               <children>
+                  <TableView fx:id="studentApproveTable" layoutX="9.0" layoutY="8.0" prefHeight="303.0" prefWidth="675.0" styleClass="studentTable" stylesheets="@../css/tableView2.css">
+                    <columns>
+                      <TableColumn fx:id="studentIdColumn" maxWidth="85.0" prefWidth="85.0" text="ID" />
+                      <TableColumn fx:id="studentFirstNameColumn" maxWidth="95.0" prefWidth="95.0" text="First Name" />
+                        <TableColumn fx:id="studentLastNameColumn" maxWidth="95.0" prefWidth="95.0" text="Last Name" />
+                        <TableColumn fx:id="studentPhoneNumberColumn" maxWidth="120.0" prefWidth="120.0" text="Phone Number" />
+                        <TableColumn fx:id="studentUsernameColumn" maxWidth="140.0" prefWidth="140.0" text="Username" />
+                        <TableColumn fx:id="studentPasswordColumn" maxWidth="140.0" prefWidth="140.0" text="Password" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

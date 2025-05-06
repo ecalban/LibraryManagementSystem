@@ -1,0 +1,74 @@
+.button-as-text {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #5F9EA0;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+    -fx-font-size: 12px;
+    -fx-underline: true;
+}
+
+.text {
+    -fx-font-family: 'Arial';
+    -fx-color: #333;
+    -fx-padding: 10px 15px;
+    -fx-border-radius: 8px; 
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+}
+
+
+.country-combo-box:focused {
+    -fx-focus-color: #5F9EA0;
+    -fx-faint-focus-color: #dcdcdc;
+    -fx-border-color: #5F9EA0;
+
+}
+.country-combo-box .list-cell {
+    -fx-background-color: #eaeaea;
+    -fx-text-fill: black;
+}
+
+.country-combo-box .list-cell:hover {
+    -fx-background-color: #C0C0C0;
+}
+
+.text-field:focused {
+    -fx-focus-color: #5F9EA0;
+    -fx-faint-focus-color: #dcdcdc;
+    -fx-border-color: #5F9EA0;
+
+}
+
+.check-box:focused {
+    -fx-focus-color: #5F9EA0;
+    -fx-faint-focus-color: #dcdcdc;
+
+}
+
+.button-menu {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: rgba(192, 192, 192, 0.3);
+    -fx-text-fill: rgba(192, 192, 192, 0.5);
+    -fx-background-color: #2b2b30;
+}
+
+.button-menu-view-issued-logout {
+    -fx-text-fill: rgba(192, 192, 192, 0.5);
+    -fx-background-color: #2b2b30;
+}
+
+
+.success-message {
+    -fx-background-color: #5F9EA0;
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: lighter;
+    -fx-border-width: 2px;
+    -fx-opacity: 1;
+}
+
+
+
+
+
+

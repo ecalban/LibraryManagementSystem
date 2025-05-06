@@ -1,0 +1,103 @@
+package model;
+
+public class Student {
+	
+	private long studentId;
+	private String studentFirstName;
+	private String studentLastName;
+	private String studentPhoneNumber;
+	private String studentUsername;
+	private String studentPassword;
+	private String studentMembershipDate;
+	private String[] studentBorrowedBooks;
+	private String[] studentReturnDate;
+	private String[] studentDeliveryStatus;
+	private int studentLateFee;
+	
+	
+	public Student(long studentId, String studentFirstName, String studentLastName, String studentPhoneNumber,
+			String studentUsername, String studentPassword, String studentMembershipDate, String[] studentBorrowedBooks,
+			String[] studentReturnDate, String[] studentDeliveryStatus, int studentLateFee) {
+		this.setStudentId(studentId);
+		this.setStudentFirstName(studentFirstName);
+		this.setStudentLastName(studentLastName);
+		this.setStudentPhoneNumber(studentPhoneNumber);
+		this.setStudentUsername(studentUsername);
+		this.setStudentPassword(studentPassword);
+		this.setStudentMembershipDate(studentMembershipDate);
+		this.setStudentBorrowedBooks(studentBorrowedBooks);
+		this.setStudentReturnDate(studentReturnDate);
+		this.setStudentDeliveryStatus(studentDeliveryStatus);
+		this.setStudentLateFee(studentLateFee);
+
+	}
+	public long getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(long studentId) {
+		this.studentId = studentId;
+	}
+	public String getStudentFirstName() {
+		return studentFirstName;
+	}
+	public void setStudentFirstName(String studentFirstName) {
+		this.studentFirstName = studentFirstName;
+	}
+	public String getStudentLastName() {
+		return studentLastName;
+	}
+	public void setStudentLastName(String studentLastName) {
+		this.studentLastName = studentLastName;
+	}
+	public String getStudentPhoneNumber() {
+		return studentPhoneNumber;
+	}
+	public void setStudentPhoneNumber(String studentPhoneNumber) {
+		this.studentPhoneNumber = studentPhoneNumber;
+	}
+	public String getStudentUsername() {
+		return studentUsername;
+	}
+	public void setStudentUsername(String studentUsername) {
+		this.studentUsername = studentUsername;
+	}
+	public String getStudentPassword() {
+		return studentPassword;
+	}
+	public void setStudentPassword(String studentPassword) {
+		this.studentPassword = studentPassword;
+	}
+	public String getStudentMembershipDate() {
+		return studentMembershipDate;
+	}
+	public void setStudentMembershipDate(String studentMembershipDate) {
+		this.studentMembershipDate = studentMembershipDate;
+	}
+	public String[] getStudentBorrowedBooks() {
+		return studentBorrowedBooks;
+	}
+	public void setStudentBorrowedBooks(String[] studentBorrowedBooks) {
+		this.studentBorrowedBooks = studentBorrowedBooks;
+	}
+	public String[] getStudentReturnDate() {
+		return studentReturnDate;
+	}
+	public void setStudentReturnDate(String[] studentReturnDate) {
+		this.studentReturnDate = studentReturnDate;
+	}
+	public String[] getStudentDeliveryStatus() {
+		return studentDeliveryStatus;
+	}
+	public void setStudentDeliveryStatus(String[] studentDeliveryStatus) {
+		this.studentDeliveryStatus = studentDeliveryStatus;
+	}
+	public int getStudentLateFee() {
+		return studentLateFee;
+	}
+	public void setStudentLateFee(int studentLateFee) {
+		this.studentLateFee = studentLateFee;
+	}
+	
+}
+
+
