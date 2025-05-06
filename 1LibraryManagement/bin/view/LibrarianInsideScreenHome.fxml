@@ -17,10 +17,10 @@
                </font></Text>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="19.0" layoutY="64.0" prefHeight="114.0" prefWidth="200.0" style="-fx-background-color: #eaeaea; -fx-border-radius: 4 4 4 4; -fx-background-radius: 4 4 4 4;">
+      <AnchorPane layoutX="19.0" layoutY="64.0" prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: #eaeaea; -fx-border-radius: 4 4 4 4; -fx-background-radius: 4 4 4 4;">
          <children>
             <Button mnemonicParsing="false" prefHeight="114.0" prefWidth="200.0" visible="false" />
-            <Text layoutX="62.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Roboto&quot;; -fx-font-size: 16px;" text="Find Book" textAlignment="CENTER" wrappingWidth="75.97735595703114">
+            <Text layoutX="62.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Roboto&quot;; -fx-font-size: 16px;" text="Find Book" textAlignment="CENTER" wrappingWidth="75.97735595703114">
                <font>
                   <Font size="16.0" />
                </font>
@@ -32,10 +32,10 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="249.0" layoutY="64.0" prefHeight="114.0" prefWidth="200.0" style="-fx-background-color: #eaeaea; -fx-border-radius: 4 4 4 4; -fx-background-radius: 4 4 4 4;">
+      <AnchorPane layoutX="249.0" layoutY="64.0" prefHeight="128.0" prefWidth="200.0" style="-fx-background-color: #eaeaea; -fx-border-radius: 4 4 4 4; -fx-background-radius: 4 4 4 4;">
          <children>
             <Button mnemonicParsing="false" prefHeight="114.0" prefWidth="200.0" visible="false" />
-            <Text layoutX="40.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Roboto&quot;; -fx-font-size: 16px;" text="Find Book Issue" textAlignment="CENTER" wrappingWidth="119.97735595703114">
+            <Text layoutX="40.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Roboto&quot;; -fx-font-size: 16px;" text="Find Book Issue" textAlignment="CENTER" wrappingWidth="119.97735595703114">
                <font>
                   <Font size="15.0" />
                </font>
@@ -50,7 +50,7 @@
       <AnchorPane layoutX="479.0" layoutY="64.0" prefHeight="114.0" prefWidth="200.0" style="-fx-background-color: #eaeaea; -fx-border-radius: 4 4 4 4; -fx-background-radius: 4 4 4 4;">
          <children>
             <Button mnemonicParsing="false" prefHeight="114.0" prefWidth="200.0" visible="false" />
-            <Text layoutX="17.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Roboto&quot;; -fx-font-size: 16px;" text="Find Student" textAlignment="CENTER" wrappingWidth="166.37741088867176">
+            <Text layoutX="17.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: &quot;Roboto&quot;; -fx-font-size: 16px;" text="Student Borrowing Status" textAlignment="CENTER" wrappingWidth="166.37741088867176">
                <font>
                   <Font size="15.0" />
                </font>

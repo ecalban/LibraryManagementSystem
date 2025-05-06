@@ -13,7 +13,7 @@
             <Text layoutX="14.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Students waiting for their approval to acces the library" wrappingWidth="500.0" />
             <AnchorPane layoutY="32.0" prefHeight="318.0" prefWidth="694.0" style="-fx-background-color: #eaeaea; -fx-background-radius: 0 0 6 6; -fx-border-radius: 0 0 6 6;">
                <children>
-                  <TableView fx:id="studentApproveTable" layoutX="9.0" layoutY="8.0" prefHeight="258.0" prefWidth="675.0" styleClass="studentTable" stylesheets="@../css/tableView2.css">
+                  <TableView fx:id="studentApproveTable" layoutX="9.0" layoutY="8.0" prefHeight="258.0" prefWidth="675.0" styleClass="studentTable" stylesheets="@../css/tableViewStudents.css">
                     <columns>
                       <TableColumn fx:id="studentIdColumn" maxWidth="85.0" prefWidth="85.0" text="ID" />
                       <TableColumn fx:id="studentFirstNameColumn" maxWidth="95.0" prefWidth="95.0" text="First Name" />

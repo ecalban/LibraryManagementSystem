@@ -84,6 +84,24 @@ public class DBtoArrayList {
 		return studentArrayList;
 	}
 	
-	
+	public static ArrayList<String> categoryToArrayList() {
+		try {
+			con = DriverManager.getConnection(url, username, password);
+		} catch (SQLException e) {
+			System.out.println("An error: " + e);
+		}
+		String sql = "SELECT * FROM bookcategories";
+		ArrayList<String> categoryArrayList = new ArrayList<String>();
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				categoryArrayList.add(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			System.out.println("An error: " + e);
+		}
+		return categoryArrayList;
+	}
 	
 }

@@ -69,7 +69,6 @@ public class SearchBookController {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/SearchBookTable.fxml"));
 		Scene scene = new Scene(loader.load());
 		popupStage.setScene(scene);	
-		popupStage.setWidth(1200);
 		popupStage.setResizable(false);
 		popupStage.showAndWait();
 

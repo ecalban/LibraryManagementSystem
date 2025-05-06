@@ -1,8 +1,6 @@
 package application;
 
 import java.io.IOException;
-import java.net.URL;
-
 import dao.DBtoArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
