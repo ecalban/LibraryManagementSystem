@@ -24,7 +24,7 @@ public class LibrarianController {
 	@FXML
 	public void initialize() {
         profileButton.setText("▼");
-		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianInsideScreenHome.fxml"));
+		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianHome.fxml"));
 		AnchorPane anchorpane;
 		try {
 			anchorpane = loader.load();
@@ -79,7 +79,7 @@ public class LibrarianController {
 	
 	@FXML
 	public void librarianHandleButtonHome(ActionEvent action) {
-		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianInsideScreenHome.fxml"));
+		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianHome.fxml"));
 		AnchorPane anchorpane;
 		try {
 			anchorpane = loader.load();
@@ -93,7 +93,7 @@ public class LibrarianController {
 	}
 	@FXML
 	public void librarianHandleButtonAddBook(ActionEvent action) {
-		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianInsideScreenAddBook.fxml"));
+		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianAddBook.fxml"));
 		AnchorPane anchorpane;
 		try {
 			anchorpane = loader.load();
@@ -114,7 +114,7 @@ public class LibrarianController {
 		} catch (Exception e) {
 			System.out.println("An eKrror: " + e);
 		}
-		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianInsideScreenStudentRegister.fxml"));
+		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianStudentRegister.fxml"));
 		AnchorPane anchorpane;
 		try {
 			anchorpane = loader.load();
@@ -135,7 +135,7 @@ public class LibrarianController {
 		} catch (Exception e) {
 			System.out.println("An eKrror: " + e);
 		}
-		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianInsideScreenStudents.fxml"));
+		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianStudents.fxml"));
 		AnchorPane anchorpane;
 		try {
 			anchorpane = loader.load();
@@ -156,7 +156,7 @@ public class LibrarianController {
 		} catch (Exception e) {
 			System.out.println("An error: " + e);
 		}
-		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianInsideScreenBooks.fxml"));
+		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianDisplayBooks.fxml"));
 		AnchorPane anchorpane;
 		try {
 			anchorpane = loader.load();

@@ -19,7 +19,7 @@
                <children>
                   <Button layoutX="259.0" layoutY="160.0" mnemonicParsing="false" onAction="#loginButton" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #5F9EA0;" text="Login" textFill="WHITE" />
                   <CheckBox layoutX="14.0" layoutY="153.0" mnemonicParsing="false" text="Remember me" />
-                  <Text layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student / Librarian Sign In">
+                  <Text layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Librarian Sign In">
                      <font>
                         <Font size="15.0" />
                      </font>

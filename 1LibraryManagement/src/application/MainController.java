@@ -46,14 +46,6 @@ public class MainController {
 	public void switchToLibrarian(ActionEvent event) {
 		switchToScene(event, "/view/Librarian.fxml");
 	}
-	@FXML
-	public void switchToAdmin(ActionEvent event) {
-		switchToScene(event, "/view/Admin.fxml");
-	}
-	@FXML
-	public void switchToStudent(ActionEvent event) {
-		switchToScene(event, "/view/Student.fxml");
-	}
 
 	@FXML
 	TextField loginUserNameTextField;
@@ -71,7 +63,7 @@ public class MainController {
 	@FXML
 	public void loginButton(ActionEvent event) throws SQLException {
 		loginEnteredUserName = loginUserNameTextField.getText();
-		String sql = "SELECT * FROM login WHERE loginusername = " + "'" + loginEnteredUserName + "'";
+		String sql = "SELECT * FROM librarians WHERE librarianusername = " + "'" + loginEnteredUserName + "'";
 		ResultSet rs = executeQuery(sql);
 		try {
 			if (!rs.next()) {
@@ -81,28 +73,17 @@ public class MainController {
 				return;
 			} else {
 				loginEnteredPassword = loginPasswordPasswordField.getText();
-				if (rs.getString(3).equals(loginEnteredPassword)) {
-					if(rs.getString(4).equals("Admin")) {
-						switchToAdmin(event);
-						return;
-					}
-					else if(rs.getString(4).equals("Librarian")) {
-						switchToLibrarian(event);
-						return;
-					}else {
-						switchToStudent(event);
-						return;
-					}
+				if (rs.getString(6).equals(loginEnteredPassword)) {
+					switchToLibrarian(event);
+					return;
 				} else {
 					loginPasswordLabel.setText("Invalid password");
 					loginUserNameTextField.clear();
 					loginPasswordPasswordField.clear();
 					return;
 				}
-
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
