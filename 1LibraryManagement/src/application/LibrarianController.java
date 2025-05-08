@@ -168,5 +168,20 @@ public class LibrarianController {
 			System.out.println("An erM K ror: " + e);
 		}
 	}
+	
+	@FXML
+	public void librarianHandleButtonIssueBooks(ActionEvent action) {
+		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianIssueBooks.fxml"));
+		AnchorPane anchorpane;
+		try {
+			anchorpane = loader.load();
+	        Pane pane = new Pane();
+	        pane.getChildren().setAll(anchorpane);
+	        mainPane.setCenter(pane);
+	        
+		} catch (IOException e) {
+			System.out.println("An error: " + e);
+		}
+	}
 
 }

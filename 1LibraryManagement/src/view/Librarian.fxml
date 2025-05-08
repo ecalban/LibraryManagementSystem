@@ -44,7 +44,7 @@
                               <Insets left="100.0" />
                            </VBox.margin>
                         </Button>
-                        <Button layoutX="10.0" layoutY="160.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="213.0" style="-fx-background-radius: 0; -fx-border-radius: 0;" styleClass="button-menu" text="Issue / Return books" textFill="WHITE">
+                        <Button layoutX="10.0" layoutY="160.0" mnemonicParsing="false" onAction="#librarianHandleButtonIssueBooks" prefHeight="38.0" prefWidth="213.0" style="-fx-background-radius: 0; -fx-border-radius: 0;" styleClass="button-menu" text="Issue / Return books" textFill="WHITE">
                            <VBox.margin>
                               <Insets left="100.0" />
                            </VBox.margin>
