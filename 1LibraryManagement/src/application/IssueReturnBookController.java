@@ -1,170 +1,127 @@
 package application;
 
+import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Random;
 import dao.DBtoArrayList;
 import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.util.Duration;
 
 public class IssueReturnBookController {
 
 	@FXML
-	private ComboBox<String> categoryComboBox;
-	@FXML
-	private Label successMessageLabel;
-	
-	@FXML
 	public void initialize() {
-		categoryComboBox.setPromptText("Fiction");
-		ArrayList<String> categoryList = DBtoArrayList.categoryToArrayList();
-		for (int i = 0; i < categoryList.size(); i++) {
-			categoryComboBox.getItems().add(categoryList.get(i));
-		}
-	successMessageLabel.setVisible(false);
-
 	}
 
 	@FXML
-	private void handleComboBoxAction() {
-		selectedItem = categoryComboBox.getValue();
-	}
-
-	int bookId;
+	TextField issueStudentID;
+	String enteredIssueStudentID;
 	@FXML
-	TextField bookName;
-	String enteredBookName;
+	TextField issueBookID;
+	String enteredIssueBookID;
 	@FXML
-	TextField authorName;
-	String enteredAuthorName;
-	@FXML
-	TextField description;
-	String enteredDescription;
-	@FXML
-	TextField stock;
-	String enteredStock;
-	String selectedItem;
+	TextField returnBookID;
+	String enteredReturnBookID;
 
 	@FXML
-	public void addBook(ActionEvent event) throws SQLException {
-		enteredBookName = bookName.getText();
-		if (!checkBookName(enteredBookName)) {
-			bookName.setPromptText("The ID is already in use or invalid.");
-			bookName.clear();
+	public void issueBook(ActionEvent e) throws SQLException {
+		enteredIssueStudentID = issueStudentID.getText();
+		if (!checkIssueStudentID(enteredIssueStudentID)) {
+			issueStudentID.setPromptText("The entered ID is not in use or is invalid.");
+			issueStudentID.clear();
 			return;
 		}
-		enteredAuthorName = authorName.getText();
-		if (!checkAuthorName(enteredAuthorName)) {
-			authorName.setPromptText("Invalid first name.");
-			authorName.clear();
+		enteredIssueBookID = issueBookID.getText();
+		if (!checkIssueBookID(enteredIssueBookID)) {
+			issueBookID.setPromptText("The entered ID is not in use or is invalid.");
+			issueBookID.clear();
 			return;
 		}
-		enteredDescription = description.getText();
-		if (!checkDescription(enteredDescription)) {
-			description.setPromptText("Invalid last name.");
-			description.clear();
-			return;
-		}
-		enteredStock = stock.getText();
-		if (!checkStock(enteredStock)) {
-			stock.setPromptText("The username is already in use or invalid.");
-			stock.clear();
-			return;
-		}
-		if (selectedItem == null) {
-			selectedItem = "Fiction";
-		}
-		randomIdForBook();
-		String sql = "INSERT INTO books (bookid, booktitle, bookauthor, bookdescription, bookcategory, bookstatus, bookstock) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
-		addToDatabase(sql, bookId, enteredBookName, enteredAuthorName, enteredDescription, selectedItem, "Available",
-				enteredStock);
-
-		successMessageLabel.setVisible(true);
-		FadeTransition fadeOut = new FadeTransition(Duration.seconds(5), successMessageLabel);
-		fadeOut.setFromValue(1.0);
-		fadeOut.setToValue(0.0);
-		fadeOut.setOnFinished(e -> successMessageLabel.setVisible(false));
-		fadeOut.play();
-		bookName.clear();
-		authorName.clear();
-		description.clear();
-		stock.clear();
-	}
-
-	private void randomIdForBook() throws SQLException {
-		Random random = new Random();
-		int randomId = random.nextInt(1000);
-		String sql = "SELECT * FROM books WHERE bookid = " + "'" + randomId + "'";
-		ResultSet rs = executeQuery(sql);
-		while(rs.next()) {
-			randomId = random.nextInt(1000);
-			rs = executeQuery(sql);
-		}
-		bookId = randomId;
-	}
-
-	private void addToDatabase(String sql, int bookId, String enteredBookName, String enteredAuthorName,
-			String enteredDescription, String selectedItem, String bookStatus, String enteredStock) {
-		try {
+		String sql = "SELECT * FROM books WHERE bookid = " + "" + Long.parseLong(enteredIssueBookID) + "";
+		ResultSet rsBook = executeQuery(sql);
+		String sql2 = "SELECT * FROM students WHERE studentid = " + "" + Long.parseLong(enteredIssueStudentID) + "";
+		ResultSet rsStudent = executeQuery(sql2);
+		if (rsBook.next() && rsStudent.next()) {
+			System.out.println("asmfa");
+			Array studentBorrowedBooks = rsStudent.getArray("studentborrowedbooks");
+			Array studentReturnDates = rsStudent.getArray("studentreturndate");
+			System.out.println();
+			Long[] tempBorrowedBooks = (Long[]) studentBorrowedBooks.getArray();
+			Long[] tempForAddingBorrowed = new Long[tempBorrowedBooks.length + 1];
+			String[] tempReturnDates = (String[]) studentReturnDates.getArray();
+			String[] tempForAddingReturn = new String[tempBorrowedBooks.length + 1];
+			String bookStatus = rsBook.getString(6);
+			int bookStock = rsBook.getInt(7);
+			int bookStockIssued = rsBook.getInt(8);
+			if (bookStockIssued >= bookStock) {
+				bookStatus = "Unavailable";
+				System.out.println("NO STOCK");
+				return;
+			}
+			bookStockIssued += 1;
+			for (int i = 0; i < tempBorrowedBooks.length; i++) {
+				tempForAddingBorrowed[i] = tempBorrowedBooks[i];
+			}
+			tempForAddingBorrowed[tempBorrowedBooks.length] = rsBook.getLong(1);
+			LocalDate today = LocalDate.now();
+			LocalDate after15Days = today.plusDays(15);
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			String formattedDate = after15Days.format(formatter);
+			for (int i = 0; i < tempReturnDates.length; i++) {
+				tempForAddingReturn[i] = tempReturnDates[i];
+			}
+			tempForAddingReturn[tempReturnDates.length] = formattedDate;
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
 					"postgres", "eren20044");
-			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1, bookId);
-			stmt.setString(2, enteredBookName);
-			stmt.setString(3, enteredAuthorName);
-			stmt.setString(4, enteredDescription);
-			stmt.setString(5, selectedItem);
-			stmt.setString(6, bookStatus);
-			stmt.setInt(7, Integer.parseInt(enteredStock));
+			PreparedStatement stmt = con.prepareStatement(
+					"UPDATE students SET studentborrowedbooks = ?, studentreturndate = ? WHERE studentid = ?");
+			Array borrowedArray = con.createArrayOf("bigint", tempForAddingBorrowed);
+			Array returnArray = con.createArrayOf("varchar", tempForAddingReturn);
+			stmt.setArray(1, borrowedArray);
+			stmt.setArray(2, returnArray);
+			stmt.setLong(3, rsStudent.getLong(1));
 			stmt.executeUpdate();
-		} catch (SQLException e) {
-			System.out.println("An error: " + e);
+			PreparedStatement stmt2 = con.prepareStatement(
+					"UPDATE books SET bookstatus = ?, stockissued = ? WHERE bookid = ?");
+			stmt2.setString(1, bookStatus);
+			stmt2.setInt(2, bookStockIssued);
+			stmt2.setLong(3, rsBook.getLong(1));
+			stmt2.executeUpdate();
 		}
 	}
 
-	private boolean checkBookName(String enteredBookName) {
-		if (enteredBookName == null || enteredBookName.trim().isEmpty()) {
+	private boolean checkIssueBookID(String enteredIssueBookID) throws SQLException {
+		try {
+			Long.parseLong(enteredIssueBookID);
+		} catch (Exception e) {
 			return false;
 		}
-		if (enteredBookName.length() > 100) {
-			return false;
-		}
-		return enteredBookName.matches("[a-zA-Z0-9\\s]*");
-	}
-
-	private boolean checkAuthorName(String enteredAuthorName) throws SQLException {
-		if (enteredAuthorName == null || enteredAuthorName.trim().isEmpty()) {
-			return false;
-		}
-		if (enteredAuthorName.length() > 50) {
-			return false;
-		}
-		return enteredAuthorName.matches("[a-zA-Z\\s]*");
-
-	}
-
-	private boolean checkDescription(String enteredDescription) {
-		if (enteredDescription == null || enteredDescription.trim().isEmpty()) {
-			return false;
-		}
-		if (enteredDescription.length() > 500) {
+		String sql = "SELECT * FROM books WHERE bookid = " + "" + Long.parseLong(enteredIssueBookID) + "";
+		ResultSet rs = executeQuery(sql);
+		if (!rs.next()) {
 			return false;
 		}
 		return true;
 	}
 
-	private boolean checkStock(String stock) {
-		if(Integer.parseInt(stock)<0 || Integer.parseInt(stock)>10) {
+	private boolean checkIssueStudentID(String IssueStudentID) throws SQLException {
+		try {
+			Long.parseLong(IssueStudentID);
+		} catch (Exception e) {
+			return false;
+		}
+		String sql = "SELECT * FROM students WHERE studentid = " + "" + Long.parseLong(IssueStudentID) + "";
+		ResultSet rs = executeQuery(sql);
+		if (!rs.next()) {
 			return false;
 		}
 		return true;

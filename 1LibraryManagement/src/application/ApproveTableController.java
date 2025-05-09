@@ -96,7 +96,7 @@ public class ApproveTableController {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
 					"postgres", "eren20044");
 			PreparedStatement stmt = con.prepareStatement(sql);
-			Array borrowedBooksArray = con.createArrayOf("varchar", studentBorrowedBooks);
+			Array borrowedBooksArray = con.createArrayOf("bigint", studentBorrowedBooks);
 			Array returnDateArray = con.createArrayOf("varchar", studentReturnDate);
 			Date studentMembershipSqlDate = Date.valueOf(studentMembershipDate);
 			stmt.setLong(1, studentId);
