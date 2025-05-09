@@ -11,13 +11,12 @@ public class Student {
 	private String studentMembershipDate;
 	private String[] studentBorrowedBooks;
 	private String[] studentReturnDate;
-	private String[] studentDeliveryStatus;
 	private int studentLateFee;
 	
 	
 	public Student(long studentId, String studentFirstName, String studentLastName, String studentPhoneNumber,
 			String studentUsername, String studentPassword, String studentMembershipDate, String[] studentBorrowedBooks,
-			String[] studentReturnDate, String[] studentDeliveryStatus, int studentLateFee) {
+			String[] studentReturnDate, int studentLateFee) {
 		this.setStudentId(studentId);
 		this.setStudentFirstName(studentFirstName);
 		this.setStudentLastName(studentLastName);
@@ -27,7 +26,6 @@ public class Student {
 		this.setStudentMembershipDate(studentMembershipDate);
 		this.setStudentBorrowedBooks(studentBorrowedBooks);
 		this.setStudentReturnDate(studentReturnDate);
-		this.setStudentDeliveryStatus(studentDeliveryStatus);
 		this.setStudentLateFee(studentLateFee);
 
 	}
@@ -84,12 +82,6 @@ public class Student {
 	}
 	public void setStudentReturnDate(String[] studentReturnDate) {
 		this.studentReturnDate = studentReturnDate;
-	}
-	public String[] getStudentDeliveryStatus() {
-		return studentDeliveryStatus;
-	}
-	public void setStudentDeliveryStatus(String[] studentDeliveryStatus) {
-		this.studentDeliveryStatus = studentDeliveryStatus;
 	}
 	public int getStudentLateFee() {
 		return studentLateFee;
