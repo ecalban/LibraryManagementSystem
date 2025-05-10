@@ -31,6 +31,9 @@ public class IssueReturnBookController {
 	@FXML
 	TextField returnBookID;
 	String enteredReturnBookID;
+	@FXML
+	TextField returnStudentID;
+	String enteredReturnStudentID;
 
 	@FXML
 	public void issueBook(ActionEvent e) throws SQLException {
@@ -51,14 +54,15 @@ public class IssueReturnBookController {
 		String sql2 = "SELECT * FROM students WHERE studentid = " + "" + Long.parseLong(enteredIssueStudentID) + "";
 		ResultSet rsStudent = executeQuery(sql2);
 		if (rsBook.next() && rsStudent.next()) {
-			System.out.println("asmfa");
 			Array studentBorrowedBooks = rsStudent.getArray("studentborrowedbooks");
 			Array studentReturnDates = rsStudent.getArray("studentreturndate");
-			System.out.println();
 			Long[] tempBorrowedBooks = (Long[]) studentBorrowedBooks.getArray();
 			Long[] tempForAddingBorrowed = new Long[tempBorrowedBooks.length + 1];
 			String[] tempReturnDates = (String[]) studentReturnDates.getArray();
 			String[] tempForAddingReturn = new String[tempBorrowedBooks.length + 1];
+			Array bookWhoIssued = rsBook.getArray("bookswhoissued");
+			Long[] tempWhoIssued = (Long[]) bookWhoIssued.getArray();
+			Long[] tempForAddingWhoIssued = new Long[tempWhoIssued.length + 1];
 			String bookStatus = rsBook.getString(6);
 			int bookStock = rsBook.getInt(7);
 			int bookStockIssued = rsBook.getInt(8);
@@ -80,6 +84,10 @@ public class IssueReturnBookController {
 				tempForAddingReturn[i] = tempReturnDates[i];
 			}
 			tempForAddingReturn[tempReturnDates.length] = formattedDate;
+			for (int i = 0; i < tempWhoIssued.length; i++) {
+				tempForAddingWhoIssued[i] = tempWhoIssued[i];
+			}
+			tempForAddingWhoIssued[tempWhoIssued.length] = rsStudent.getLong(1);
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
 					"postgres", "eren20044");
 			PreparedStatement stmt = con.prepareStatement(
@@ -91,12 +99,108 @@ public class IssueReturnBookController {
 			stmt.setLong(3, rsStudent.getLong(1));
 			stmt.executeUpdate();
 			PreparedStatement stmt2 = con.prepareStatement(
-					"UPDATE books SET bookstatus = ?, stockissued = ? WHERE bookid = ?");
+					"UPDATE books SET bookstatus = ?, stockissued = ?, bookswhoissued = ? WHERE bookid = ?");
+			Array whoIssuedArray = con.createArrayOf("bigint", tempForAddingWhoIssued);
 			stmt2.setString(1, bookStatus);
 			stmt2.setInt(2, bookStockIssued);
-			stmt2.setLong(3, rsBook.getLong(1));
-			stmt2.executeUpdate();
+			stmt2.setLong(4, rsBook.getLong(1));
+			stmt2.setArray(3, whoIssuedArray);
+			stmt2.executeUpdate();	
 		}
+	}
+	
+	@FXML
+	public void returnBook(ActionEvent e) throws SQLException {
+		enteredReturnStudentID = returnStudentID.getText();
+		if (!checkIssueStudentID(enteredReturnStudentID)) {
+			returnStudentID.setPromptText("The entered ID is not in use or is invalid.");
+			returnStudentID.clear();
+			return;
+		}
+		enteredReturnBookID = returnBookID.getText();
+		if (!checkIssueBookID(enteredReturnBookID)) {
+			returnBookID.setPromptText("The entered ID is not in use or is invalid.");
+			returnBookID.clear();
+			return;
+		}
+		String sql = "SELECT * FROM books WHERE bookid = " + "" + Long.parseLong(enteredReturnBookID) + "";
+		ResultSet rsBook = executeQuery(sql);
+		String sql2 = "SELECT * FROM students WHERE studentid = " + "" + Long.parseLong(enteredReturnStudentID) + "";
+		ResultSet rsStudent = executeQuery(sql2);
+		if (rsBook.next() && rsStudent.next()) {
+			Array bookWhoIssued = rsBook.getArray("bookswhoissued");
+			Long[] tempWhoIssued = (Long[]) bookWhoIssued.getArray();
+			int c = 0;
+			for(int i = 0;i<tempWhoIssued.length;i++) {
+				if(tempWhoIssued[i] == rsStudent.getLong(1));
+				c = 1;
+			}
+			if(c == 0) {
+				System.out.println("STUDENT DONT HAVE THE BOOK");
+				return;
+			}
+			Array studentBorrowedBooks = rsStudent.getArray("studentborrowedbooks");
+			Array studentReturnDates = rsStudent.getArray("studentreturndate");
+			String bookStatus = rsBook.getString(6);
+			int bookStock = rsBook.getInt(7);
+			int bookStockIssued = rsBook.getInt(8);
+			bookStockIssued -= 1;
+			if (bookStockIssued < bookStock) {
+				bookStatus = "Available";
+			}
+			int indexForDeletingDB = 0;
+			for(int i = 0;i<tempWhoIssued.length;i++) {
+				if(tempWhoIssued[i] == rsStudent.getLong(1)) {
+					indexForDeletingDB = i;
+					break;
+				}
+			}
+			studentBorrowedBooks = deleteIndexInArrayLong(studentBorrowedBooks, indexForDeletingDB);
+			studentReturnDates = deleteIndexInArrayString(studentReturnDates, indexForDeletingDB);
+			bookWhoIssued = deleteIndexInArrayLong(bookWhoIssued, indexForDeletingDB);
+			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
+					"postgres", "eren20044");
+			PreparedStatement stmt = con.prepareStatement(
+					"UPDATE students SET studentborrowedbooks = ?, studentreturndate = ? WHERE studentid = ?");
+			stmt.setArray(1, studentBorrowedBooks);
+			stmt.setArray(2, studentReturnDates);
+			stmt.setLong(3, rsStudent.getLong(1));
+			stmt.executeUpdate();
+			PreparedStatement stmt2 = con.prepareStatement(
+					"UPDATE books SET bookstatus = ?, stockissued = ?, bookswhoissued = ? WHERE bookid = ?");
+			stmt2.setString(1, bookStatus);
+			stmt2.setInt(2, bookStockIssued);
+			stmt2.setLong(4, rsBook.getLong(1));
+			stmt2.setArray(3, bookWhoIssued);
+			stmt2.executeUpdate();	
+
+		}
+	}
+	
+	private Array deleteIndexInArrayString(Array array, int index) throws SQLException {
+		Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
+				"postgres", "eren20044");
+	    String[] original = (String[]) array.getArray();
+	    String[] newArray = new String[original.length - 1];
+	    for (int i = 0, j = 0; i < original.length; i++) {
+	        if (i != index) {
+	            newArray[j++] = original[i];
+	        }
+	    }
+	    return con.createArrayOf("varchar", newArray);
+	}
+
+	private Array deleteIndexInArrayLong(Array array, int index) throws SQLException {
+		Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
+				"postgres", "eren20044");
+		Long[] original = (Long[]) array.getArray();
+		Long[] newArray = new Long[original.length - 1];
+	    for (int i = 0, j = 0; i < original.length; i++) {
+	        if (i != index) {
+	            newArray[j++] = original[i];
+	        }
+	    }
+	    return con.createArrayOf("bigint", newArray);
 	}
 
 	private boolean checkIssueBookID(String enteredIssueBookID) throws SQLException {

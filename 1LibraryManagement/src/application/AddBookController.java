@@ -84,8 +84,8 @@ public class AddBookController {
 			selectedItem = "Fiction";
 		}
 		randomIdForBook();
-		String sql = "INSERT INTO books (bookid, booktitle, bookauthor, bookdescription, bookcategory, bookstatus, bookstock) "
-				+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO books (bookid, booktitle, bookauthor, bookdescription, bookcategory, bookstatus, bookstock, stockissued) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		addToDatabase(sql, bookId, enteredBookName, enteredAuthorName, enteredDescription, selectedItem, "Available",
 				enteredStock);
 
@@ -126,6 +126,7 @@ public class AddBookController {
 			stmt.setString(5, selectedItem);
 			stmt.setString(6, bookStatus);
 			stmt.setInt(7, Integer.parseInt(enteredStock));
+			stmt.setInt(8, 0);
 			stmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("An error: " + e);
