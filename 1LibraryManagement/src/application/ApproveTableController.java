@@ -41,6 +41,7 @@ public class ApproveTableController {
 	@SuppressWarnings("deprecation")
 	@FXML
 	public void initialize() {
+		
 		studentIdColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
 		studentFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("studentFirstName"));
 		studentLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("studentLastName"));
@@ -52,6 +53,8 @@ public class ApproveTableController {
 		ObservableList<StudentForApprove> observableList = FXCollections
 				.observableArrayList(ApproveTableController.studentApproveList);
 		studentApproveTable.setItems(observableList);
+		
+		
 	}
 
 	@FXML
@@ -110,6 +113,7 @@ public class ApproveTableController {
 			stmt.setArray(9, borrowedBooksArray);
 			stmt.setArray(10, returnDateArray);
 			stmt.executeUpdate();
+			con.close();
 		} catch (SQLException e) {
 			System.out.println("An error: " + e);
 		}
@@ -120,6 +124,7 @@ public class ApproveTableController {
 				"eren20044");
 		PreparedStatement pst = con.prepareStatement(sql);
 		pst.executeUpdate();
+		con.close();
 	}
 
 }

@@ -32,6 +32,25 @@
     -fx-background-color: #C0C0C0;
 }
 
+.registration-combo-box:focused {
+    -fx-focus-color: #5F9EA0;
+    -fx-faint-focus-color: #dcdcdc;
+    -fx-border-color: #5F9EA0;
+
+}
+.registration-combo-box .list-cell {
+    -fx-background-color: #eaeaea;
+    -fx-text-fill: black;
+}
+
+.registration-combo-box .list-cell:hover {
+    -fx-background-color: #C0C0C0;
+}
+
+.registration-combo-box{
+	-fx-background-color: #C0C0C0;
+	-fx-border-color: #C0C0C0;
+}
 .text-field:focused {
     -fx-focus-color: #5F9EA0;
     -fx-faint-focus-color: #dcdcdc;
@@ -58,7 +77,15 @@
 }
 
 
-.success-message {
+.registrationsuccess-message {
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: lighter;
+    -fx-border-width: 2px;
+    -fx-opacity: 1;
+}
+
+.registrationbutton {
     -fx-background-color: #5F9EA0;
     -fx-text-fill: white;
     -fx-font-size: 12px;
@@ -66,6 +93,7 @@
     -fx-border-width: 2px;
     -fx-opacity: 1;
 }
+
 
 
 

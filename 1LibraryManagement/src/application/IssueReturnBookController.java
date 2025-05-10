@@ -8,10 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Random;
-import dao.DBtoArrayList;
-import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -106,6 +102,7 @@ public class IssueReturnBookController {
 			stmt2.setLong(4, rsBook.getLong(1));
 			stmt2.setArray(3, whoIssuedArray);
 			stmt2.executeUpdate();	
+			con.close();
 		}
 	}
 	
@@ -173,7 +170,7 @@ public class IssueReturnBookController {
 			stmt2.setLong(4, rsBook.getLong(1));
 			stmt2.setArray(3, bookWhoIssued);
 			stmt2.executeUpdate();	
-
+			con.close();
 		}
 	}
 	
@@ -187,7 +184,9 @@ public class IssueReturnBookController {
 	            newArray[j++] = original[i];
 	        }
 	    }
-	    return con.createArrayOf("varchar", newArray);
+	    Array array1 = con.createArrayOf("varchar", newArray);
+	    con.close();
+	    return array1;
 	}
 
 	private Array deleteIndexInArrayLong(Array array, int index) throws SQLException {
@@ -200,7 +199,9 @@ public class IssueReturnBookController {
 	            newArray[j++] = original[i];
 	        }
 	    }
-	    return con.createArrayOf("bigint", newArray);
+	    Array array1 = con.createArrayOf("bigint", newArray);
+	    con.close();
+	    return array1;
 	}
 
 	private boolean checkIssueBookID(String enteredIssueBookID) throws SQLException {
@@ -236,6 +237,7 @@ public class IssueReturnBookController {
 				"eren20044");
 		PreparedStatement pst = con.prepareStatement(sql);
 		ResultSet rs = pst.executeQuery();
+		con.close();
 		return rs;
 	}
 

@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
 
 public class AddBookController {
@@ -30,8 +31,27 @@ public class AddBookController {
 		for (int i = 0; i < categoryList.size(); i++) {
 			categoryComboBox.getItems().add(categoryList.get(i));
 		}
-	successMessageLabel.setVisible(false);
+		Tooltip bookNameTooltip = new Tooltip(
+			"Enter the title of the book.\nOnly letters, numbers, and spaces are allowed.\nMax 100 characters.");
+		bookName.setTooltip(bookNameTooltip);
 
+		Tooltip authorNameTooltip = new Tooltip(
+			"Enter the author's full name.\nOnly letters and spaces are allowed.\nMax 50 characters.");
+		authorName.setTooltip(authorNameTooltip);
+
+		Tooltip descriptionTooltip = new Tooltip(
+			"Provide a brief description of the book.\nMax 500 characters.");
+		description.setTooltip(descriptionTooltip);
+
+		Tooltip stockTooltip = new Tooltip(
+			"Enter how many copies of the book are available.\nMust be a number between 0 and 10.");
+		stock.setTooltip(stockTooltip);
+
+		Tooltip categoryTooltip = new Tooltip(
+			"Select the category of the book.\nExample: Fiction, Science, History...");
+		categoryComboBox.setTooltip(categoryTooltip);
+
+		successMessageLabel.setVisible(false);
 	}
 
 	@FXML
@@ -60,24 +80,28 @@ public class AddBookController {
 		if (!checkBookName(enteredBookName)) {
 			bookName.setPromptText("The ID is already in use or invalid.");
 			bookName.clear();
+			displayWrongInputLabel();
 			return;
 		}
 		enteredAuthorName = authorName.getText();
 		if (!checkAuthorName(enteredAuthorName)) {
 			authorName.setPromptText("Invalid first name.");
 			authorName.clear();
+			displayWrongInputLabel();
 			return;
 		}
 		enteredDescription = description.getText();
 		if (!checkDescription(enteredDescription)) {
 			description.setPromptText("Invalid last name.");
 			description.clear();
+			displayWrongInputLabel();
 			return;
 		}
 		enteredStock = stock.getText();
 		if (!checkStock(enteredStock)) {
 			stock.setPromptText("The username is already in use or invalid.");
 			stock.clear();
+			displayWrongInputLabel();
 			return;
 		}
 		if (selectedItem == null) {
@@ -88,8 +112,9 @@ public class AddBookController {
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		addToDatabase(sql, bookId, enteredBookName, enteredAuthorName, enteredDescription, selectedItem, "Available",
 				enteredStock);
-
+		successMessageLabel.setText("  Books have been successfully added.");
 		successMessageLabel.setVisible(true);
+		successMessageLabel.setStyle("-fx-background-color: #5F9EA0;");
 		FadeTransition fadeOut = new FadeTransition(Duration.seconds(5), successMessageLabel);
 		fadeOut.setFromValue(1.0);
 		fadeOut.setToValue(0.0);
@@ -100,7 +125,18 @@ public class AddBookController {
 		description.clear();
 		stock.clear();
 	}
-
+	
+	private void displayWrongInputLabel() {
+		FadeTransition fadeOut = new FadeTransition(Duration.seconds(5), successMessageLabel);
+		successMessageLabel.setText("      Invalid input. Hover to see details.");
+		successMessageLabel.setVisible(true);
+		successMessageLabel.setStyle("-fx-background-color: #D9534F;");
+		fadeOut.setFromValue(1.0);
+		fadeOut.setToValue(0.0);
+		fadeOut.setOnFinished(e -> successMessageLabel.setVisible(false));
+		fadeOut.play();
+	}
+	
 	private void randomIdForBook() throws SQLException {
 		Random random = new Random();
 		int randomId = random.nextInt(1000);
@@ -128,6 +164,7 @@ public class AddBookController {
 			stmt.setInt(7, Integer.parseInt(enteredStock));
 			stmt.setInt(8, 0);
 			stmt.executeUpdate();
+			con.close();
 		} catch (SQLException e) {
 			System.out.println("An error: " + e);
 		}
@@ -176,6 +213,7 @@ public class AddBookController {
 				"eren20044");
 		PreparedStatement pst = con.prepareStatement(sql);
 		ResultSet rs = pst.executeQuery();
+		con.close();
 		return rs;
 	}
 

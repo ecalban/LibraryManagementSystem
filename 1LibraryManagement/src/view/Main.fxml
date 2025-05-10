@@ -28,8 +28,14 @@
                      <children>
                         <TextField fx:id="loginUserNameTextField" layoutX="19.0" layoutY="14.0" promptText="Username" />
                         <PasswordField fx:id="loginPasswordPasswordField" layoutX="19.0" layoutY="63.0" promptText="Password" />
-                        <Label fx:id="loginUserNameLabel" layoutX="177.0" layoutY="18.0" prefHeight="18.0" prefWidth="173.0" />
-                        <Label fx:id="loginPasswordLabel" layoutX="177.0" layoutY="66.0" prefHeight="18.0" prefWidth="173.0" />
+                        <Label fx:id="loginUserNameLabel" layoutX="177.0" layoutY="18.0" prefHeight="18.0" prefWidth="173.0" textFill="#d9534f">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
+                        <Label fx:id="loginPasswordLabel" layoutX="177.0" layoutY="66.0" prefHeight="18.0" prefWidth="173.0" textFill="#d9534f">
+                           <font>
+                              <Font size="14.0" />
+                           </font></Label>
                      </children>
                   </AnchorPane>
                   <Button layoutY="170.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="148.0" styleClass="button-as-text" text="New librarian? Sign Up" />

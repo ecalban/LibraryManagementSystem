@@ -48,7 +48,6 @@ public class StudentRegistrationController {
 						+ "and one special character. The password must be between 8 and 20 characters long, \n"
 						+ "and should not contain spaces.");
 		password.setTooltip(passwordTooltip);
-
 		successMessageLabel.setVisible(false);
 	}
 
@@ -88,10 +87,9 @@ public class StudentRegistrationController {
 	TextField password;
 	String enteredPassword;
 	String selectedItem;
-    @FXML
-    private Label successMessageLabel;
-	
-	
+	@FXML
+	private Label successMessageLabel;
+
 	@FXML
 	private void handleComboBoxAction() {
 		selectedItem = countryComboBox.getValue();
@@ -99,63 +97,82 @@ public class StudentRegistrationController {
 
 	@FXML
 	public void studentRegister(ActionEvent event) throws SQLException {
-		enteredID = studentID.getText();
-		if (!checkID(enteredID)) {
-			studentID.setPromptText("The ID is already in use or invalid.");
-			studentID.clear();
-			return;
-		}
 		enteredFirstName = firstName.getText();
 		if (!checkFirstName(enteredFirstName)) {
 			firstName.setPromptText("Invalid first name.");
 			firstName.clear();
+			displayWrongInputLabel();
 			return;
 		}
 		enteredLastName = lastName.getText();
 		if (!checkLastName(enteredLastName)) {
 			lastName.setPromptText("Invalid last name.");
 			lastName.clear();
+			displayWrongInputLabel();
 			return;
+		}
+		enteredID = studentID.getText();
+		if (!checkID(enteredID)) {
+			studentID.setPromptText("The ID is already in use or invalid.");
+			studentID.clear();
+			displayWrongInputLabel();
+			return;
+
 		}
 		enteredPhoneNumber = phoneNumber.getText();
 		if (!checkPhoneNumber(enteredPhoneNumber)) {
 			phoneNumber.setPromptText("Invalid phone number.");
 			phoneNumber.clear();
+			displayWrongInputLabel();
 			return;
 		}
 		enteredUsername = username.getText();
 		if (!checkUsername(enteredUsername)) {
 			username.setPromptText("The username is already in use or invalid.");
 			username.clear();
+			displayWrongInputLabel();
 			return;
 		}
 		enteredPassword = password.getText();
 		if (!checkPassword(enteredPassword)) {
 			password.setPromptText("Invalid password.");
 			password.clear();
+			displayWrongInputLabel();
 			return;
 		}
-		if(selectedItem == null) {
+		if (selectedItem == null) {
 			selectedItem = "US +1";
 		}
 		String sql = "INSERT INTO studentForApprove (studentId, studentFirstName, studentLastName, studentPhoneNumber, studentUsername, studentPassword) "
 				+ "VALUES (?, ?, ?, ?, ?, ?)";
-		addToDatabase(sql, enteredID, enteredFirstName, enteredLastName, selectedItem + enteredPhoneNumber, enteredUsername,
-				enteredPassword);
-		
-        successMessageLabel.setVisible(true);
-        FadeTransition fadeOut = new FadeTransition(Duration.seconds(5), successMessageLabel);
-        fadeOut.setFromValue(1.0);
-        fadeOut.setToValue(0.0);
-        fadeOut.setOnFinished(e -> successMessageLabel.setVisible(false));
-        fadeOut.play();
-        firstName.clear();
-        lastName.clear();
-        studentID.clear();
-        phoneNumber.clear();
-        username.clear();
-        password.clear();
-        
+		addToDatabase(sql, enteredID, enteredFirstName, enteredLastName, selectedItem + enteredPhoneNumber,
+				enteredUsername, enteredPassword);
+		successMessageLabel.setText(" Registration successful. Await librarian approval.");
+		successMessageLabel.setVisible(true);
+		successMessageLabel.setStyle("-fx-background-color: #5F9EA0;");
+		FadeTransition fadeOut = new FadeTransition(Duration.seconds(5), successMessageLabel);
+		fadeOut.setFromValue(1.0);
+		fadeOut.setToValue(0.0);
+		fadeOut.setOnFinished(e -> successMessageLabel.setVisible(false));
+		fadeOut.play();
+		firstName.clear();
+		lastName.clear();
+		studentID.clear();
+		phoneNumber.clear();
+		username.clear();
+		password.clear();
+
+	}
+
+	private void displayWrongInputLabel() {
+		FadeTransition fadeOut = new FadeTransition(Duration.seconds(5), successMessageLabel);
+		successMessageLabel.setText("            Invalid input. Hover to see details.  ");
+		successMessageLabel.setVisible(true);
+		successMessageLabel.setStyle("-fx-background-color: #D9534F;");
+		fadeOut.setFromValue(1.0);
+		fadeOut.setToValue(0.0);
+		fadeOut.setOnFinished(e -> successMessageLabel.setVisible(false));
+		fadeOut.play();
 	}
 
 	private void addToDatabase(String sql, String enteredID, String enteredFirstName, String enteredLastName,
@@ -171,6 +188,7 @@ public class StudentRegistrationController {
 			stmt.setString(5, enteredUsername);
 			stmt.setString(6, enteredPassword);
 			stmt.executeUpdate();
+			con.close();
 		} catch (SQLException e) {
 			System.out.println("An error: " + e);
 		}
@@ -178,8 +196,8 @@ public class StudentRegistrationController {
 	}
 
 	private boolean checkPassword(String enteredPassword) {
-        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*(),.?\":{}|<>]).{8,20}$";
-        return enteredPassword.matches(regex);
+		String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*(),.?\":{}|<>]).{8,20}$";
+		return enteredPassword.matches(regex);
 	}
 
 	private boolean checkUsername(String enteredUsername) throws SQLException {
@@ -188,9 +206,9 @@ public class StudentRegistrationController {
 		if (rs.next()) {
 			return false;
 		}
-        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d|[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{5,25}$";
-        return	enteredUsername.matches(regex);
-        
+		String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d|[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{5,25}$";
+		return enteredUsername.matches(regex);
+
 	}
 
 	private boolean checkPhoneNumber(String enteredPhoneNumber) {
@@ -199,13 +217,13 @@ public class StudentRegistrationController {
 	}
 
 	private boolean checkLastName(String enteredLastName) {
-        String regex = "^[a-zA-Z]{1,25}$";
-        return enteredLastName.matches(regex);
+		String regex = "^[a-zA-Z]{1,25}$";
+		return enteredLastName.matches(regex);
 	}
 
 	private boolean checkFirstName(String enteredFirstName) {
-        String regex = "^[a-zA-Z]{1,25}$";
-        return enteredFirstName.matches(regex);
+		String regex = "^[a-zA-Z]{1,25}$";
+		return enteredFirstName.matches(regex);
 	}
 
 	public boolean checkID(String enteredID) throws SQLException {
@@ -225,6 +243,7 @@ public class StudentRegistrationController {
 				"eren20044");
 		PreparedStatement pst = con.prepareStatement(sql);
 		ResultSet rs = pst.executeQuery();
+		con.close();
 		return rs;
 	}
 

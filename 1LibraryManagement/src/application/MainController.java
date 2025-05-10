@@ -7,6 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class MainController {
 
@@ -67,8 +69,7 @@ public class MainController {
 		ResultSet rs = executeQuery(sql);
 		try {
 			if (!rs.next()) {
-				loginUserNameLabel.setText("Invalid username");
-				loginPasswordPasswordField.clear();
+				displayWrongInputLabel(loginUserNameLabel, "username");
 				loginUserNameTextField.clear();
 				return;
 			} else {
@@ -77,8 +78,7 @@ public class MainController {
 					switchToLibrarian(event);
 					return;
 				} else {
-					loginPasswordLabel.setText("Invalid password");
-					loginUserNameTextField.clear();
+					displayWrongInputLabel(loginPasswordLabel, "password");
 					loginPasswordPasswordField.clear();
 					return;
 				}
@@ -88,6 +88,16 @@ public class MainController {
 		}
 	}
 
+	private void displayWrongInputLabel(Label label, String inf) {
+		FadeTransition fadeOut = new FadeTransition(Duration.seconds(5), label);
+		label.setText("Invalid " + inf);
+		label.setVisible(true);
+		fadeOut.setFromValue(1.0);
+		fadeOut.setToValue(0.0);
+		fadeOut.setOnFinished(e -> label.setVisible(false));
+		fadeOut.play();
+	}
+	
 	private ResultSet executeQuery(String sql) throws SQLException {
 		Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB", "postgres",
 				"eren20044");

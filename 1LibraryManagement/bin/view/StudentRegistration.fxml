@@ -49,7 +49,7 @@
                      </children>
                   </AnchorPane>
                   <Button layoutY="230.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="30.0" prefWidth="88.0" styleClass="button-as-text" text="Go Back!" />
-                  <Label fx:id="successMessageLabel" layoutX="165.0" layoutY="225.0" prefHeight="26.0" prefWidth="264.0" styleClass="success-message" text=" Registration successful. Await librarian approval." textAlignment="CENTER" />
+                  <Label fx:id="successMessageLabel" layoutX="165.0" layoutY="225.0" prefHeight="26.0" prefWidth="264.0" styleClass="registrationsuccess-message" textAlignment="CENTER" />
                </children>
                <cursor>
                   <Cursor fx:constant="DEFAULT" />

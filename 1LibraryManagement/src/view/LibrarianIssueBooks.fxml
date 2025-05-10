@@ -6,7 +6,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="350.0" prefWidth="740.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IssueReturnBookController">
+<AnchorPane prefHeight="350.0" prefWidth="740.0" style="-fx-background-color: #C0C0C0;" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.IssueReturnBookController">
    <children>
       <AnchorPane layoutX="19.0" prefHeight="153.0" prefWidth="694.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 6px; -fx-border-radius: 6px;">
          <children>
@@ -18,7 +18,7 @@
                   <Text layoutX="102.0" layoutY="69.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Book ID" wrappingWidth="75.68475341796875" />
                   <TextField fx:id="issueBookID" layoutX="200.0" layoutY="52.0" prefHeight="16.0" prefWidth="378.0" promptText="Enter the book ID here..." />
                   <TextField fx:id="issueStudentID" layoutX="200.0" layoutY="10.0" prefHeight="17.0" prefWidth="378.0" promptText="Enter the student ID here..." />
-                  <Button layoutX="200.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="20.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#issueBook" prefHeight="26.0" prefWidth="92.0" text="Issue Book" />
+                  <Button layoutX="200.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="20.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#issueBook" prefHeight="26.0" prefWidth="92.0" styleClass="registrationbutton" text="Issue Book" />
                </children>
             </AnchorPane>
             <Line endX="328.2000732421875" endY="7.62939453125E-6" layoutX="335.0" layoutY="75.0" opacity="0.1" startX="-311.6000061035156" startY="7.62939453125E-6" />
@@ -34,7 +34,7 @@
                   <Text layoutX="102.0" layoutY="69.0" opacity="0.7" strokeType="OUTSIDE" strokeWidth="0.0" text="Book ID" wrappingWidth="75.68475341796875" />
                   <TextField fx:id="returnBookID" layoutX="200.0" layoutY="52.0" prefHeight="16.0" prefWidth="378.0" promptText="Enter the book ID here..." />
                   <TextField fx:id="returnStudentID" layoutX="200.0" layoutY="10.0" prefHeight="17.0" prefWidth="378.0" promptText="Enter the student ID here..." />
-                  <Button layoutX="200.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="20.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#returnBook" prefHeight="26.0" prefWidth="92.0" text="Return Book" />
+                  <Button layoutX="200.0" layoutY="90.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="20.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#returnBook" prefHeight="26.0" prefWidth="92.0" styleClass="registrationbutton" text="Return Book" />
                </children>
             </AnchorPane>
             <Line endX="328.2000732421875" endY="7.62939453125E-6" layoutX="335.0" layoutY="75.0" opacity="0.1" startX="-311.6000061035156" startY="7.62939453125E-6" />
