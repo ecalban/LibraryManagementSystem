@@ -8,16 +8,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
+import javafx.animation.FadeTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.util.Duration;
 
 public class IssueReturnBookController {
 
 	@FXML
 	public void initialize() {
+		issueMessageLabel.setVisible(false);
+		returnMessageLabel.setVisible(false);
 	}
-
+	
+	@FXML
+	private Label issueMessageLabel;
+	@FXML
+	private Label returnMessageLabel;
 	@FXML
 	TextField issueStudentID;
 	String enteredIssueStudentID;
@@ -37,12 +48,14 @@ public class IssueReturnBookController {
 		if (!checkIssueStudentID(enteredIssueStudentID)) {
 			issueStudentID.setPromptText("The entered ID is not in use or is invalid.");
 			issueStudentID.clear();
+			displayAlert(issueMessageLabel ,"           Invalid input.",  "#D9534F");
 			return;
 		}
 		enteredIssueBookID = issueBookID.getText();
 		if (!checkIssueBookID(enteredIssueBookID)) {
 			issueBookID.setPromptText("The entered ID is not in use or is invalid.");
 			issueBookID.clear();
+			displayAlert(issueMessageLabel, "           Invalid input.",  "#D9534F");
 			return;
 		}
 		String sql = "SELECT * FROM books WHERE bookid = " + "" + Long.parseLong(enteredIssueBookID) + "";
@@ -64,7 +77,7 @@ public class IssueReturnBookController {
 			int bookStockIssued = rsBook.getInt(8);
 			if (bookStockIssued >= bookStock) {
 				bookStatus = "Unavailable";
-				System.out.println("NO STOCK");
+				displayAlert(issueMessageLabel, "     Book is out of stock.", "#D9534F");
 				return;
 			}
 			bookStockIssued += 1;
@@ -103,7 +116,19 @@ public class IssueReturnBookController {
 			stmt2.setArray(3, whoIssuedArray);
 			stmt2.executeUpdate();	
 			con.close();
+			displayAlert(issueMessageLabel, "  Issued until " + formattedDate , "#5F9EA0");
 		}
+	}
+	
+	private void displayAlert(Label label ,String str, String color) {
+		FadeTransition fadeOut = new FadeTransition(Duration.seconds(5), label);
+		label.setText(str);
+		label.setVisible(true);
+		label.setStyle("-fx-background-color:" + color + ";");
+		fadeOut.setFromValue(1.0);
+		fadeOut.setToValue(0.0);
+		fadeOut.setOnFinished(e -> label.setVisible(false));
+		fadeOut.play();
 	}
 	
 	@FXML
@@ -112,12 +137,14 @@ public class IssueReturnBookController {
 		if (!checkIssueStudentID(enteredReturnStudentID)) {
 			returnStudentID.setPromptText("The entered ID is not in use or is invalid.");
 			returnStudentID.clear();
+			displayAlert(returnMessageLabel, "                    Invalid input.",  "#D9534F");
 			return;
 		}
 		enteredReturnBookID = returnBookID.getText();
 		if (!checkIssueBookID(enteredReturnBookID)) {
 			returnBookID.setPromptText("The entered ID is not in use or is invalid.");
 			returnBookID.clear();
+			displayAlert(returnMessageLabel, "                    Invalid input.",  "#D9534F");
 			return;
 		}
 		String sql = "SELECT * FROM books WHERE bookid = " + "" + Long.parseLong(enteredReturnBookID) + "";
@@ -133,7 +160,7 @@ public class IssueReturnBookController {
 				c = 1;
 			}
 			if(c == 0) {
-				System.out.println("STUDENT DONT HAVE THE BOOK");
+				displayAlert(returnMessageLabel, "  The student doesn't have the book.",  "#D9534F");
 				return;
 			}
 			Array studentBorrowedBooks = rsStudent.getArray("studentborrowedbooks");
@@ -152,16 +179,25 @@ public class IssueReturnBookController {
 					break;
 				}
 			}
+			System.out.println("RAMR");
+			int lateFee = calculateLateFee(studentReturnDates, indexForDeletingDB);
+			System.out.println("SAMŞDL");
 			studentBorrowedBooks = deleteIndexInArrayLong(studentBorrowedBooks, indexForDeletingDB);
+			System.out.println("FSŞAFA");
 			studentReturnDates = deleteIndexInArrayString(studentReturnDates, indexForDeletingDB);
+			System.out.println("ŞA SŞFL");
 			bookWhoIssued = deleteIndexInArrayLong(bookWhoIssued, indexForDeletingDB);
+			System.out.println("FAŞLFŞLAS");
+			System.out.println("ŞSADŞLSA ");
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
 					"postgres", "eren20044");
 			PreparedStatement stmt = con.prepareStatement(
-					"UPDATE students SET studentborrowedbooks = ?, studentreturndate = ? WHERE studentid = ?");
+					"UPDATE students SET studentborrowedbooks = ?, studentreturndate = ?, studentlatefee = ? WHERE studentid = ?");
+			System.out.println("FŞLASŞLA");
 			stmt.setArray(1, studentBorrowedBooks);
 			stmt.setArray(2, studentReturnDates);
-			stmt.setLong(3, rsStudent.getLong(1));
+			stmt.setLong(4, rsStudent.getLong(1));
+			stmt.setInt(3, lateFee);
 			stmt.executeUpdate();
 			PreparedStatement stmt2 = con.prepareStatement(
 					"UPDATE books SET bookstatus = ?, stockissued = ?, bookswhoissued = ? WHERE bookid = ?");
@@ -171,9 +207,19 @@ public class IssueReturnBookController {
 			stmt2.setArray(3, bookWhoIssued);
 			stmt2.executeUpdate();	
 			con.close();
+			displayAlert(returnMessageLabel, "                   Book returned.", "#5F9EA0");
 		}
 	}
 	
+	private int calculateLateFee(Array array, int index) throws SQLException {
+	    String[] tempArray = (String[]) array.getArray();
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	    LocalDate date = LocalDate.parse(tempArray[index], formatter);
+	    LocalDate today = LocalDate.now();
+	    int daysBetween = (int) ChronoUnit.DAYS.between(date, today);
+		return daysBetween*2;
+	}
+
 	private Array deleteIndexInArrayString(Array array, int index) throws SQLException {
 		Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
 				"postgres", "eren20044");

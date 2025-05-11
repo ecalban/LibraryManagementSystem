@@ -50,7 +50,6 @@ public class AddBookController {
 		Tooltip categoryTooltip = new Tooltip(
 			"Select the category of the book.\nExample: Fiction, Science, History...");
 		categoryComboBox.setTooltip(categoryTooltip);
-
 		successMessageLabel.setVisible(false);
 	}
 
@@ -80,28 +79,28 @@ public class AddBookController {
 		if (!checkBookName(enteredBookName)) {
 			bookName.setPromptText("The ID is already in use or invalid.");
 			bookName.clear();
-			displayWrongInputLabel();
+			displayAlert("      Invalid input. Hover to see details.", "#D9534F");
 			return;
 		}
 		enteredAuthorName = authorName.getText();
 		if (!checkAuthorName(enteredAuthorName)) {
 			authorName.setPromptText("Invalid first name.");
 			authorName.clear();
-			displayWrongInputLabel();
+			displayAlert("      Invalid input. Hover to see details.", "#D9534F");
 			return;
 		}
 		enteredDescription = description.getText();
 		if (!checkDescription(enteredDescription)) {
 			description.setPromptText("Invalid last name.");
 			description.clear();
-			displayWrongInputLabel();
+			displayAlert("      Invalid input. Hover to see details.", "#D9534F");
 			return;
 		}
 		enteredStock = stock.getText();
 		if (!checkStock(enteredStock)) {
 			stock.setPromptText("The username is already in use or invalid.");
 			stock.clear();
-			displayWrongInputLabel();
+			displayAlert("      Invalid input. Hover to see details.", "#D9534F");
 			return;
 		}
 		if (selectedItem == null) {
@@ -112,25 +111,18 @@ public class AddBookController {
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		addToDatabase(sql, bookId, enteredBookName, enteredAuthorName, enteredDescription, selectedItem, "Available",
 				enteredStock);
-		successMessageLabel.setText("  Books have been successfully added.");
-		successMessageLabel.setVisible(true);
-		successMessageLabel.setStyle("-fx-background-color: #5F9EA0;");
-		FadeTransition fadeOut = new FadeTransition(Duration.seconds(5), successMessageLabel);
-		fadeOut.setFromValue(1.0);
-		fadeOut.setToValue(0.0);
-		fadeOut.setOnFinished(e -> successMessageLabel.setVisible(false));
-		fadeOut.play();
+		displayAlert("  Books have been successfully added.", "#5F9EA0");
 		bookName.clear();
 		authorName.clear();
 		description.clear();
 		stock.clear();
 	}
 	
-	private void displayWrongInputLabel() {
+	private void displayAlert(String str, String color) {
 		FadeTransition fadeOut = new FadeTransition(Duration.seconds(5), successMessageLabel);
-		successMessageLabel.setText("      Invalid input. Hover to see details.");
+		successMessageLabel.setText(str);
 		successMessageLabel.setVisible(true);
-		successMessageLabel.setStyle("-fx-background-color: #D9534F;");
+		successMessageLabel.setStyle("-fx-background-color:" + color + ";");
 		fadeOut.setFromValue(1.0);
 		fadeOut.setToValue(0.0);
 		fadeOut.setOnFinished(e -> successMessageLabel.setVisible(false));

@@ -49,10 +49,10 @@ public class ApproveTableController {
 		studentUsernameColumn.setCellValueFactory(new PropertyValueFactory<>("studentUsername"));
 		studentPasswordColumn.setCellValueFactory(new PropertyValueFactory<>("studentPassword"));
 		studentApproveTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
 		ObservableList<StudentForApprove> observableList = FXCollections
 				.observableArrayList(ApproveTableController.studentApproveList);
 		studentApproveTable.setItems(observableList);
+
 		
 		
 	}

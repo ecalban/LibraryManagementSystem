@@ -131,7 +131,7 @@ public class LibrarianController {
 	public void librarianHandleButtonStudentsRegistered(ActionEvent action) {
 		String sql = "SELECT * FROM students";
 		try {
-			ApproveTableController.studentApproveList = DBtoArrayList.StudentForApproveToArrayList(sql);
+			StudentsRegisteredTableController.studentApproveList = DBtoArrayList.StudentForApproveToArrayList(sql);
 		} catch (Exception e) {
 			System.out.println("An eKrror: " + e);
 		}

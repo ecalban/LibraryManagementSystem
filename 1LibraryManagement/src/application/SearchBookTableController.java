@@ -44,6 +44,7 @@ public class SearchBookTableController {
 
 		ObservableList<Book> observableList = FXCollections.observableArrayList(SearchBookTableController.bookList);
         searchBookTable.setItems(observableList);
+		searchBookTable.setSelectionModel(null);
 	}
 
 }

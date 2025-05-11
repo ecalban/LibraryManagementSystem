@@ -43,6 +43,8 @@ public class StudentsRegisteredTableController {
 		ObservableList<StudentForApprove> observableList = FXCollections
 				.observableArrayList(StudentsRegisteredTableController.studentApproveList);
 		studentApproveTable.setItems(observableList);
+		studentApproveTable.setSelectionModel(null);
+
 	}
 
 }

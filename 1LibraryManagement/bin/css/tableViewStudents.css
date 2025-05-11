@@ -23,7 +23,6 @@
 }
 
 .table-view .table-row-cell:selected {
-    -fx-background-color: #4B4B4B;
-    
+    -fx-background-color: #5F9EA0;
 }
 
