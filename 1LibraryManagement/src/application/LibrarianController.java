@@ -91,6 +91,27 @@ public class LibrarianController {
 			System.out.println("An error: " + e);
 		}
 	}
+	
+	@FXML
+	public void librarianHandleButtonDisplayIssued(ActionEvent action) {
+		String sql = "SELECT * FROM books WHERE stockissued != 0";
+		try {
+			SearchBookTableController.bookList = DBtoArrayList.SearchedBookToArrayList(sql);
+		} catch (Exception e) {
+			System.out.println("An error: " + e);
+		}
+		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianDisplayBooksIssued.fxml"));
+		AnchorPane anchorpane;
+		try {
+			anchorpane = loader.load();
+			Pane pane = new Pane();
+			pane.getChildren().setAll(anchorpane);
+			mainPane.setCenter(pane);
+			
+		} catch (IOException e) {
+			System.out.println("An erM K ror: " + e);
+		}
+	}
 	@FXML
 	public void librarianHandleButtonAddBook(ActionEvent action) {
 		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianAddBook.fxml"));

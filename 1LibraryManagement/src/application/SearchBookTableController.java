@@ -40,8 +40,6 @@ public class SearchBookTableController {
 		bookCategoryColumn.setCellValueFactory(new PropertyValueFactory<>("bookCategory"));
 		bookStatusColumn.setCellValueFactory(new PropertyValueFactory<>("bookStatus"));
 		searchBookTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-
 		ObservableList<Book> observableList = FXCollections.observableArrayList(SearchBookTableController.bookList);
         searchBookTable.setItems(observableList);
 		searchBookTable.setSelectionModel(null);

@@ -164,6 +164,7 @@ public class IssueReturnBookController {
 				return;
 			}
 			Array studentBorrowedBooks = rsStudent.getArray("studentborrowedbooks");
+		    Long[] tempBorrowedBooks = (Long[]) studentBorrowedBooks.getArray();
 			Array studentReturnDates = rsStudent.getArray("studentreturndate");
 			String bookStatus = rsBook.getString(6);
 			int bookStock = rsBook.getInt(7);
@@ -172,32 +173,31 @@ public class IssueReturnBookController {
 			if (bookStockIssued < bookStock) {
 				bookStatus = "Available";
 			}
-			int indexForDeletingDB = 0;
-			for(int i = 0;i<tempWhoIssued.length;i++) {
-				if(tempWhoIssued[i] == rsStudent.getLong(1)) {
-					indexForDeletingDB = i;
+			int studentIndexForDeletingDB = 0;
+			for(int i = 0;i<tempBorrowedBooks.length;i++) {
+				if(tempBorrowedBooks[i] == rsBook.getLong(1)) {
+					studentIndexForDeletingDB = i;
 					break;
 				}
 			}
-			System.out.println("RAMR");
-			int lateFee = calculateLateFee(studentReturnDates, indexForDeletingDB);
-			System.out.println("SAMŞDL");
-			studentBorrowedBooks = deleteIndexInArrayLong(studentBorrowedBooks, indexForDeletingDB);
-			System.out.println("FSŞAFA");
-			studentReturnDates = deleteIndexInArrayString(studentReturnDates, indexForDeletingDB);
-			System.out.println("ŞA SŞFL");
-			bookWhoIssued = deleteIndexInArrayLong(bookWhoIssued, indexForDeletingDB);
-			System.out.println("FAŞLFŞLAS");
-			System.out.println("ŞSADŞLSA ");
+			int bookIndexForDeletingDB = 0;
+			for(int i = 0;i<tempWhoIssued.length;i++) {
+				if(tempWhoIssued[i] == rsStudent.getLong(1)) {
+					bookIndexForDeletingDB = i;
+					break;
+				}
+			}
+			int lateFee = calculateLateFee(studentReturnDates, studentIndexForDeletingDB);
+			studentBorrowedBooks = deleteIndexInArrayLong(studentBorrowedBooks, studentIndexForDeletingDB);
+			studentReturnDates = deleteIndexInArrayString(studentReturnDates, studentIndexForDeletingDB);
+			bookWhoIssued = deleteIndexInArrayLong(bookWhoIssued, bookIndexForDeletingDB);
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
 					"postgres", "eren20044");
 			PreparedStatement stmt = con.prepareStatement(
-					"UPDATE students SET studentborrowedbooks = ?, studentreturndate = ?, studentlatefee = ? WHERE studentid = ?");
-			System.out.println("FŞLASŞLA");
+					"UPDATE students SET studentborrowedbooks = ?, studentreturndate = ?  WHERE studentid = ?");
 			stmt.setArray(1, studentBorrowedBooks);
 			stmt.setArray(2, studentReturnDates);
-			stmt.setLong(4, rsStudent.getLong(1));
-			stmt.setInt(3, lateFee);
+			stmt.setLong(3, rsStudent.getLong(1));
 			stmt.executeUpdate();
 			PreparedStatement stmt2 = con.prepareStatement(
 					"UPDATE books SET bookstatus = ?, stockissued = ?, bookswhoissued = ? WHERE bookid = ?");
@@ -205,9 +205,9 @@ public class IssueReturnBookController {
 			stmt2.setInt(2, bookStockIssued);
 			stmt2.setLong(4, rsBook.getLong(1));
 			stmt2.setArray(3, bookWhoIssued);
-			stmt2.executeUpdate();	
+			stmt2.executeUpdate();
 			con.close();
-			displayAlert(returnMessageLabel, "                   Book returned.", "#5F9EA0");
+			displayAlert(returnMessageLabel, "        Book returned. Late fee:" + lateFee + "$", "#5F9EA0");
 		}
 	}
 	
@@ -217,7 +217,10 @@ public class IssueReturnBookController {
 	    LocalDate date = LocalDate.parse(tempArray[index], formatter);
 	    LocalDate today = LocalDate.now();
 	    int daysBetween = (int) ChronoUnit.DAYS.between(date, today);
-		return daysBetween*2;
+	    if(daysBetween>0) {
+	    	return daysBetween*2;
+	    }
+		return 0;
 	}
 
 	private Array deleteIndexInArrayString(Array array, int index) throws SQLException {

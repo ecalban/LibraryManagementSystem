@@ -49,7 +49,7 @@
                               <Insets left="100.0" />
                            </VBox.margin>
                         </Button>
-                        <Button layoutX="10.0" layoutY="198.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="205.0" style="-fx-background-radius: 0 0 2 2; -fx-border-radius: 0 0 2 2;" styleClass="button-menu-view-issued-logout" text="View all books currently issued" textFill="WHITE">
+                        <Button layoutX="10.0" layoutY="198.0" mnemonicParsing="false" onAction="#librarianHandleButtonDisplayIssued" prefHeight="38.0" prefWidth="205.0" style="-fx-background-radius: 0 0 2 2; -fx-border-radius: 0 0 2 2;" styleClass="button-menu-view-issued-logout" text="View all books currently issued" textFill="WHITE">
                            <VBox.margin>
                               <Insets left="100.0" />
                            </VBox.margin>

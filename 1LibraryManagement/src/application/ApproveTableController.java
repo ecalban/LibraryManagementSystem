@@ -41,7 +41,7 @@ public class ApproveTableController {
 	@SuppressWarnings("deprecation")
 	@FXML
 	public void initialize() {
-		
+
 		studentIdColumn.setCellValueFactory(new PropertyValueFactory<>("studentId"));
 		studentFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("studentFirstName"));
 		studentLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("studentLastName"));
@@ -53,8 +53,6 @@ public class ApproveTableController {
 				.observableArrayList(ApproveTableController.studentApproveList);
 		studentApproveTable.setItems(observableList);
 
-		
-		
 	}
 
 	@FXML
@@ -80,12 +78,11 @@ public class ApproveTableController {
 				studentForApprove.getStudentUsername(), studentForApprove.getStudentPassword(),
 				LocalDate.now().toString(), emptyArray, emptyArray, 0);
 		String sql = "INSERT INTO students (studentId, studentFirstName, studentLastName, studentPhoneNumber,"
-				+ " studentUsername, studentPassword, studentmembershipdate, studentlatefee, studentborrowedbooks,"
-				+ " studentreturndate)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " studentUsername, studentPassword, studentmembershipdate, studentborrowedbooks,"
+				+ " studentreturndate)" + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		addToDatabase(sql, student.getStudentId(), student.getStudentFirstName(), student.getStudentLastName(),
 				student.getStudentPhoneNumber(), student.getStudentUsername(), student.getStudentPassword(),
-				student.getStudentMembershipDate(), student.getStudentBorrowedBooks(), student.getStudentReturnDate(),
-				student.getStudentLateFee());
+				student.getStudentMembershipDate(), student.getStudentBorrowedBooks(), student.getStudentReturnDate());
 		String sql2 = "DELETE FROM studentforapprove WHERE studentid = " + "'"
 				+ studentApproveTable.getSelectionModel().getSelectedItem().getStudentId() + "'";
 		executeUpdate(sql2);
@@ -94,7 +91,7 @@ public class ApproveTableController {
 
 	private void addToDatabase(String sql, long studentId, String studentFirstName, String studentLastName,
 			String studentPhoneNumber, String studentUsername, String studentPassword, String studentMembershipDate,
-			String[] studentBorrowedBooks, String[] studentReturnDate, int studentLateFee) {
+			String[] studentBorrowedBooks, String[] studentReturnDate) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
 					"postgres", "eren20044");
@@ -109,9 +106,8 @@ public class ApproveTableController {
 			stmt.setString(5, studentUsername);
 			stmt.setString(6, studentPassword);
 			stmt.setDate(7, studentMembershipSqlDate);
-			stmt.setInt(8, studentLateFee);
-			stmt.setArray(9, borrowedBooksArray);
-			stmt.setArray(10, returnDateArray);
+			stmt.setArray(8, borrowedBooksArray);
+			stmt.setArray(9, returnDateArray);
 			stmt.executeUpdate();
 			con.close();
 		} catch (SQLException e) {
