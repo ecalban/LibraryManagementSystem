@@ -44,7 +44,6 @@ public class LibrarianController {
 	@FXML
 	public void profileButton(ActionEvent event) {
         boolean isVisible = menuBox.isVisible();
-        
         menuBox.setVisible(!isVisible);  
         menuBox.setManaged(!isVisible); 
 	}
