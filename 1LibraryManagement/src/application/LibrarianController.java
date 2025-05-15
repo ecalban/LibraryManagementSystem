@@ -17,35 +17,33 @@ import javafx.stage.Stage;
 
 public class LibrarianController {
 
+	@FXML
+	private Button profileButton;
 
-    @FXML
-    private Button profileButton;
-    
 	@FXML
 	public void initialize() {
-        profileButton.setText("▼");
-		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianHome.fxml"));
+		profileButton.setText("▼");
+		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianHome2.fxml"));
 		AnchorPane anchorpane;
 		try {
 			anchorpane = loader.load();
-	        Pane pane = new Pane();
-	        pane.getChildren().setAll(anchorpane);
-	        mainPane.setCenter(pane);
-	        
+			Pane pane = new Pane();
+			pane.getChildren().setAll(anchorpane);
+			mainPane.setCenter(pane);
+
 		} catch (IOException e) {
 			System.out.println("An error: " + e);
 		}
 	}
-	
+
 	@FXML
 	VBox menuBox;
-	
-	
+
 	@FXML
 	public void profileButton(ActionEvent event) {
-        boolean isVisible = menuBox.isVisible();
-        menuBox.setVisible(!isVisible);  
-        menuBox.setManaged(!isVisible); 
+		boolean isVisible = menuBox.isVisible();
+		menuBox.setVisible(!isVisible);
+		menuBox.setManaged(!isVisible);
 	}
 
 	public void switchToScene(ActionEvent event, String fileName) {
@@ -59,38 +57,35 @@ public class LibrarianController {
 			System.out.println("An error: " + e);
 		}
 	}
-	
-	
+
 	public Scene addCss(Scene scene, String cssFileName) {
 		scene.getStylesheets().add(getClass().getResource(cssFileName).toExternalForm());
 		return scene;
 	}
-	
-	
+
 	@FXML
 	public void switchToMain(ActionEvent event) {
 		switchToScene(event, "/view/Main.fxml");
 	}
-	
-	
+
 	@FXML
 	BorderPane mainPane;
-	
+
 	@FXML
 	public void librarianHandleButtonHome(ActionEvent action) {
-		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianHome.fxml"));
+		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianHome2.fxml"));
 		AnchorPane anchorpane;
 		try {
 			anchorpane = loader.load();
-	        Pane pane = new Pane();
-	        pane.getChildren().setAll(anchorpane);
-	        mainPane.setCenter(pane);
-	        
+			Pane pane = new Pane();
+			pane.getChildren().setAll(anchorpane);
+			mainPane.setCenter(pane);
+
 		} catch (IOException e) {
 			System.out.println("An error: " + e);
 		}
 	}
-	
+
 	@FXML
 	public void librarianHandleButtonDisplayIssued(ActionEvent action) {
 		String sql = "SELECT * FROM books WHERE stockissued != 0";
@@ -99,18 +94,20 @@ public class LibrarianController {
 		} catch (Exception e) {
 			System.out.println("An error: " + e);
 		}
-		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianDisplayBooksIssued.fxml"));
+		FXMLLoader loader = new FXMLLoader(
+				LibrarianController.class.getResource("/view/LibrarianDisplayBooksIssued.fxml"));
 		AnchorPane anchorpane;
 		try {
 			anchorpane = loader.load();
 			Pane pane = new Pane();
 			pane.getChildren().setAll(anchorpane);
 			mainPane.setCenter(pane);
-			
+
 		} catch (IOException e) {
 			System.out.println("An erM K ror: " + e);
 		}
 	}
+
 	@FXML
 	public void librarianHandleButtonAddBook(ActionEvent action) {
 		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianAddBook.fxml"));
@@ -120,12 +117,12 @@ public class LibrarianController {
 			Pane pane = new Pane();
 			pane.getChildren().setAll(anchorpane);
 			mainPane.setCenter(pane);
-			
+
 		} catch (IOException e) {
 			System.out.println("An error: " + e);
 		}
 	}
-	
+
 	@FXML
 	public void librarianHandleButtonStudentApprove(ActionEvent action) {
 		String sql = "SELECT * FROM studentforapprove";
@@ -134,19 +131,20 @@ public class LibrarianController {
 		} catch (Exception e) {
 			System.out.println("An eKrror: " + e);
 		}
-		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianStudentRegister.fxml"));
+		FXMLLoader loader = new FXMLLoader(
+				LibrarianController.class.getResource("/view/LibrarianStudentRegister.fxml"));
 		AnchorPane anchorpane;
 		try {
 			anchorpane = loader.load();
 			Pane pane = new Pane();
 			pane.getChildren().setAll(anchorpane);
 			mainPane.setCenter(pane);
-			
+
 		} catch (IOException e) {
 			System.out.println("An error: " + e);
 		}
 	}
-	
+
 	@FXML
 	public void librarianHandleButtonStudentsRegistered(ActionEvent action) {
 		String sql = "SELECT * FROM students";
@@ -162,12 +160,12 @@ public class LibrarianController {
 			Pane pane = new Pane();
 			pane.getChildren().setAll(anchorpane);
 			mainPane.setCenter(pane);
-			
+
 		} catch (IOException e) {
 			System.out.println("An error: " + e);
 		}
 	}
-	
+
 	@FXML
 	public void librarianHandleButtonAllBooks(ActionEvent action) {
 		String sql = "SELECT * FROM Books";
@@ -183,22 +181,22 @@ public class LibrarianController {
 			Pane pane = new Pane();
 			pane.getChildren().setAll(anchorpane);
 			mainPane.setCenter(pane);
-			
+
 		} catch (IOException e) {
 			System.out.println("An erM K ror: " + e);
 		}
 	}
-	
+
 	@FXML
 	public void librarianHandleButtonIssueBooks(ActionEvent action) {
 		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianIssueBooks.fxml"));
 		AnchorPane anchorpane;
 		try {
 			anchorpane = loader.load();
-	        Pane pane = new Pane();
-	        pane.getChildren().setAll(anchorpane);
-	        mainPane.setCenter(pane);
-	        
+			Pane pane = new Pane();
+			pane.getChildren().setAll(anchorpane);
+			mainPane.setCenter(pane);
+
 		} catch (IOException e) {
 			System.out.println("An error: " + e);
 		}

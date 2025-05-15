@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="160.0" prefWidth="662.0" style="-fx-background-color: #eaeaea;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="314.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FIND STUDENT" wrappingWidth="86.93670654296875" />
+   </children>
+</AnchorPane>

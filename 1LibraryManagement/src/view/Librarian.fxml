@@ -15,7 +15,7 @@
    <children>
       <AnchorPane layoutY="52.0" prefHeight="393.0" prefWidth="1058.0" style="-fx-background-color: #C0C0C0;">
          <children>
-            <BorderPane fx:id="mainPane" layoutX="7.0" layoutY="34.0" prefHeight="351.0" prefWidth="1043.0">
+            <BorderPane fx:id="mainPane" layoutX="7.0" layoutY="34.0" prefHeight="350.0" prefWidth="1043.0">
                <left>
                   <VBox prefHeight="363.0" prefWidth="304.0" BorderPane.alignment="CENTER">
                      <children>
