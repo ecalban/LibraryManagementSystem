@@ -27,6 +27,9 @@ public class StudentRegistrationController {
 
 	@FXML
 	private ComboBox<String> countryComboBox;
+	
+	@FXML
+	private ComboBox<String> majorComboBox;
 
 	@FXML
 	public void initialize() {
@@ -41,13 +44,7 @@ public class StudentRegistrationController {
 				"Please enter a username with at least one uppercase letter, one lowercase letter,\n"
 						+ " and no spaces. The username can include numbers and special characters,\n"
 						+ " and must be between 5 and 25 characters long.");
-		username.setTooltip(usernameTooltip);
-
-		Tooltip passwordTooltip = new Tooltip(
-				"Please enter a password with at least one uppercase letter, one lowercase letter, one number,\n"
-						+ "and one special character. The password must be between 8 and 20 characters long, \n"
-						+ "and should not contain spaces.");
-		password.setTooltip(passwordTooltip);
+		email.setTooltip(usernameTooltip);
 		successMessageLabel.setVisible(false);
 	}
 
@@ -81,11 +78,8 @@ public class StudentRegistrationController {
 	TextField phoneNumber;
 	String enteredPhoneNumber;
 	@FXML
-	TextField username;
-	String enteredUsername;
-	@FXML
-	TextField password;
-	String enteredPassword;
+	TextField email;
+	String enteredEmail;
 	String selectedItem;
 	@FXML
 	private Label successMessageLabel;
@@ -126,27 +120,20 @@ public class StudentRegistrationController {
 			displayWrongInputLabel();
 			return;
 		}
-		enteredUsername = username.getText();
-		if (!checkUsername(enteredUsername)) {
-			username.setPromptText("The username is already in use or invalid.");
-			username.clear();
-			displayWrongInputLabel();
-			return;
-		}
-		enteredPassword = password.getText();
-		if (!checkPassword(enteredPassword)) {
-			password.setPromptText("Invalid password.");
-			password.clear();
+		enteredEmail = email.getText();
+		if (!checkUsername(enteredEmail)) {
+			email.setPromptText("The email is already in use or invalid.");
+			email.clear();
 			displayWrongInputLabel();
 			return;
 		}
 		if (selectedItem == null) {
 			selectedItem = "US +1";
 		}
-		String sql = "INSERT INTO studentForApprove (studentId, studentFirstName, studentLastName, studentPhoneNumber, studentUsername, studentPassword) "
-				+ "VALUES (?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO studentForApprove (studentId, studentFirstName, studentLastName, studentPhoneNumber, studentUsername) "
+				+ "VALUES (?, ?, ?, ?, ?)";
 		addToDatabase(sql, enteredID, enteredFirstName, enteredLastName, selectedItem + enteredPhoneNumber,
-				enteredUsername, enteredPassword);
+				enteredEmail);
 		successMessageLabel.setText(" Registration successful. Await librarian approval.");
 		successMessageLabel.setVisible(true);
 		successMessageLabel.setStyle("-fx-background-color: #5F9EA0;");
@@ -159,9 +146,7 @@ public class StudentRegistrationController {
 		lastName.clear();
 		studentID.clear();
 		phoneNumber.clear();
-		username.clear();
-		password.clear();
-
+		email.clear();
 	}
 
 	private void displayWrongInputLabel() {
@@ -176,7 +161,7 @@ public class StudentRegistrationController {
 	}
 
 	private void addToDatabase(String sql, String enteredID, String enteredFirstName, String enteredLastName,
-			String enteredPhoneNumber, String enteredUsername, String enteredPassword) {
+			String enteredPhoneNumber, String enteredUsername) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
 					"postgres", "eren20044");
@@ -186,7 +171,6 @@ public class StudentRegistrationController {
 			stmt.setString(3, enteredLastName);
 			stmt.setString(4, enteredPhoneNumber);
 			stmt.setString(5, enteredUsername);
-			stmt.setString(6, enteredPassword);
 			stmt.executeUpdate();
 			con.close();
 		} catch (SQLException e) {
@@ -195,10 +179,6 @@ public class StudentRegistrationController {
 
 	}
 
-	private boolean checkPassword(String enteredPassword) {
-		String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*(),.?\":{}|<>]).{8,20}$";
-		return enteredPassword.matches(regex);
-	}
 
 	private boolean checkUsername(String enteredUsername) throws SQLException {
 		String sql = "SELECT * FROM studentforapprove WHERE studentusername = " + "'" + enteredUsername + "'";
@@ -206,7 +186,7 @@ public class StudentRegistrationController {
 		if (rs.next()) {
 			return false;
 		}
-		String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d|[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{5,25}$";
+		String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
 		return enteredUsername.matches(regex);
 
 	}

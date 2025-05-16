@@ -1,7 +1,6 @@
 package application;
 
 import java.io.IOException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
@@ -21,23 +20,23 @@ public class LibrarianHomeController {
 	BorderPane mainPaneHome;
 
 	@FXML
-	public void librarianFindStudent(ActionEvent e) {
-		FXMLLoader loader = new FXMLLoader(
-				LibrarianController.class.getResource("/view/LibrarianHomeFindStudent.fxml"));
-		AnchorPane anchorpane;
-		try {
-			anchorpane = loader.load();
-			Pane pane = new Pane();
-			pane.getChildren().setAll(anchorpane);
-			mainPaneHome.setCenter(pane);
-
-		} catch (IOException e1) {
-			System.out.println("An error: " + e1);
-		}
+	public void librarianFindStudent(javafx.event.Event e) {
+	    FXMLLoader loader = new FXMLLoader(
+	        LibrarianController.class.getResource("/view/LibrarianHomeFindStudent.fxml"));
+	    AnchorPane anchorpane;
+	    try {
+	        anchorpane = loader.load();
+	        Pane pane = new Pane();
+	        pane.getChildren().setAll(anchorpane);
+	        mainPaneHome.setCenter(pane);
+	    } catch (IOException e1) {
+	        System.out.println("An error: " + e1);
+	    }
 	}
 
+
 	@FXML
-	public void librarianFindBook(ActionEvent e) {
+	public void librarianFindBook(javafx.event.Event e) {
 		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianHomeFindBook.fxml"));
 		AnchorPane anchorpane;
 		try {
@@ -45,7 +44,6 @@ public class LibrarianHomeController {
 			Pane pane = new Pane();
 			pane.getChildren().setAll(anchorpane);
 			mainPaneHome.setCenter(pane);
-
 		} catch (IOException e1) {
 			System.out.println("An error: " + e1);
 		}

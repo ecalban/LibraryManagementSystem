@@ -43,9 +43,9 @@
                            </tooltip></TextField>
                         <ComboBox fx:id="countryComboBox" layoutX="529.0" layoutY="70.0" onAction="#handleComboBoxAction" prefHeight="30.0" prefWidth="88.0" styleClass="country-combo-box" />
                         <Line endX="824.3999633789062" endY="233.99998474121094" layoutX="-212.0" layoutY="-125.0" opacity="0.1" startX="230.6999969482422" startY="234.0" />
-                        <TextField fx:id="username" layoutX="14.0" layoutY="121.0" prefHeight="34.0" prefWidth="292.0" promptText="Username" />
-                        <TextField fx:id="password" layoutX="320.0" layoutY="121.0" prefHeight="34.0" prefWidth="298.0" promptText="Password" />
+                        <TextField fx:id="email" layoutX="14.0" layoutY="121.0" prefHeight="34.0" prefWidth="339.0" promptText="Email" />
                         <Line endX="824.3999633789062" endY="233.99998474121094" layoutX="-213.0" layoutY="-175.0" opacity="0.1" startX="230.6999969482422" startY="234.0" />
+                        <ComboBox fx:id="majorComboBox" layoutX="374.0" layoutY="123.0" onAction="#handleComboBoxAction" prefHeight="30.0" prefWidth="243.0" styleClass="country-combo-box" />
                      </children>
                   </AnchorPane>
                   <Button layoutY="230.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="30.0" prefWidth="88.0" styleClass="button-as-text" text="Go Back!" />

@@ -3,8 +3,18 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="160.0" prefWidth="662.0" style="-fx-background-color: #eaeaea;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="131.0" prefWidth="662.0" style="-fx-background-color: #C0C0C0;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="314.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FIND STUDENT" wrappingWidth="86.93670654296875" />
+      <AnchorPane layoutY="-2.0" prefHeight="123.0" prefWidth="662.0" style="-fx-background-color: #eaeaea;">
+         <children>
+            <Text layoutX="14.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Books Issued" wrappingWidth="134.936767578125" />
+            <Text layoutX="14.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Books Issued" wrappingWidth="134.936767578125" />
+            <Text layoutX="14.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Books Issued" wrappingWidth="134.936767578125" />
+            <Text layoutX="14.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Username" wrappingWidth="134.936767578125" />
+            <Text layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Phone Number" textAlignment="RIGHT" wrappingWidth="134.936767578125" />
+            <Text layoutX="14.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of Student" textAlignment="RIGHT" wrappingWidth="134.936767578125" />
+            <Text layoutX="14.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID" textAlignment="RIGHT" wrappingWidth="134.936767578125" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

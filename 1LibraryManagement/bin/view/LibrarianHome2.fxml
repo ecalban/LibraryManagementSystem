@@ -32,7 +32,7 @@
                               <Font size="16.0" />
                            </font>
                         </Text>
-                        <ImageView fitHeight="58.0" fitWidth="57.0" layoutX="72.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="58.0" fitWidth="57.0" layoutX="72.0" layoutY="14.0" onMouseClicked="#librarianFindBook" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Users/w11/Desktop/icons/icons8-book-stack-96.png" />
                            </image>
@@ -68,7 +68,7 @@
                               <Font size="15.0" />
                            </font>
                         </Text>
-                        <ImageView fitHeight="58.0" fitWidth="57.0" layoutX="72.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="58.0" fitWidth="57.0" layoutX="72.0" layoutY="14.0" onMouseClicked="#librarianFindStudent" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../Users/w11/Desktop/icons/icons8-find-user-male-90.png" />
                            </image>
