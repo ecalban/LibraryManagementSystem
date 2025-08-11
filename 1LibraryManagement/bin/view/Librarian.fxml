@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="1058.0" style="-fx-background-color: #eaeaea;" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LibrarianController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="1058.0" style="-fx-background-color: #eaeaea;" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/21.0.8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LibrarianController">
    <children>
       <AnchorPane layoutY="52.0" prefHeight="393.0" prefWidth="1058.0" style="-fx-background-color: #C0C0C0;">
          <children>
@@ -71,11 +71,6 @@
       </Text>
       <Text fill="#201a1a" layoutX="80.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2025 INU - Automated Library Management System" wrappingWidth="360.5367546081543" />
       <Hyperlink layoutX="90.0" layoutY="495.0" prefHeight="24.0" prefWidth="195.0" text="https://github.com/ecalban" textFill="CADETBLUE" />
-      <ImageView fx:id="profileImageView" fitHeight="42.0" fitWidth="42.0" layoutX="952.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" smooth="true">
-         <image>
-            <Image url="@../../../../Users/w11/Desktop/icons/profile.png" />
-         </image>
-      </ImageView>
       <VBox fx:id="menuBox" layoutX="833.0" layoutY="43.0" prefHeight="158.0" prefWidth="116.0" visible="false">
          <children>
             <Button mnemonicParsing="false" prefHeight="55.0" prefWidth="116.0" style="-fx-border-radius: 4 4 0 0; -fx-background-radius: 4 4 0 0;" styleClass="button-menu" text="Profile" />
@@ -83,5 +78,10 @@
             <Button layoutX="10.0" layoutY="65.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="125.0" style="-fx-background-radius: 0 0 4 4; -fx-border-radius: 0 0 4 4;" styleClass="button-menu-view-issued-logout" text="Change Password" />
          </children></VBox>
       <Button fx:id="profileButton" focusTraversable="false" layoutX="910.0" layoutY="10.0" mnemonicParsing="false" onAction="#profileButton" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" />
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="949.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../Desktop/icons/profile.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

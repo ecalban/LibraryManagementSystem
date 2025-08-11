@@ -6,18 +6,18 @@ public class StudentForApprove {
 	private String studentFirstName;
 	private String studentLastName;
 	private String studentPhoneNumber;
-	private String studentUsername;
-	private String studentPassword;
+	private String studentEmail;
+	private String studentDepartment;
 
 
 	public StudentForApprove(long studentId, String studentFirstName, String studentLastName, String studentPhoneNumber,
-				String studentUsername, String studentPassword) {
+				String studentEmail, String studentDepartment) {
 			this.setStudentId(studentId);
 			this.setStudentFirstName(studentFirstName);
 			this.setStudentLastName(studentLastName);
 			this.setStudentPhoneNumber(studentPhoneNumber);
-			this.setStudentUsername(studentUsername);
-			this.setStudentPassword(studentPassword);
+			this.setStudentEmail(studentEmail);
+			this.setStudentDepartment(studentDepartment);
 
 		}
 
@@ -53,20 +53,20 @@ public class StudentForApprove {
 		this.studentPhoneNumber = studentPhoneNumber;
 	}
 
-	public String getStudentUsername() {
-		return studentUsername;
+	public String getStudentEmail() {
+		return studentEmail;
 	}
 
-	public void setStudentUsername(String studentUsername) {
-		this.studentUsername = studentUsername;
+	public void setStudentEmail(String studentEmail) {
+		this.studentEmail = studentEmail;
 	}
 
-	public String getStudentPassword() {
-		return studentPassword;
+	public String getStudentDepartment() {
+		return studentDepartment;
 	}
 
-	public void setStudentPassword(String studentPassword) {
-		this.studentPassword = studentPassword;
+	public void setStudentDepartment(String studentDepartment) {
+		this.studentDepartment = studentDepartment;
 	}
 
 

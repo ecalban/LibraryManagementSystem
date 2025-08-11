@@ -3,22 +3,22 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="1058.0" style="-fx-background-color: #eaeaea;" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="1058.0" style="-fx-background-color: #eaeaea;" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
       <AnchorPane layoutY="52.0" prefHeight="393.0" prefWidth="1058.0" style="-fx-background-color: #C0C0C0;">
          <children>
             <AnchorPane layoutX="135.0" layoutY="112.0" prefHeight="206.0" prefWidth="354.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 6 6 6 6; -fx-border-radius: 6 6 6 6;">
                <children>
                   <Button layoutX="259.0" layoutY="160.0" mnemonicParsing="false" onAction="#loginButton" prefHeight="25.0" prefWidth="65.0" style="-fx-background-color: #5F9EA0;" text="Login" textFill="WHITE" />
-                  <CheckBox layoutX="14.0" layoutY="153.0" mnemonicParsing="false" text="Remember me" />
+                  <CheckBox fx:id="rememberme" layoutX="14.0" layoutY="153.0" mnemonicParsing="false" text="Remember me" />
                   <Text layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Librarian Sign In">
                      <font>
                         <Font size="15.0" />
@@ -26,8 +26,7 @@
                   </Text>
                   <AnchorPane layoutY="39.0" prefHeight="103.0" prefWidth="354.0" style="-fx-background-color: #F5F5F5;">
                      <children>
-                        <TextField fx:id="loginUserNameTextField" layoutX="19.0" layoutY="14.0" promptText="Username" />
-                        <PasswordField fx:id="loginPasswordPasswordField" layoutX="19.0" layoutY="63.0" promptText="Password" />
+                        <PasswordField fx:id="loginPasswordPasswordField" alignment="BOTTOM_LEFT" layoutX="19.0" layoutY="60.0" maxHeight="30.0" maxWidth="145.0" minHeight="30.0" minWidth="145.0" prefHeight="30.0" prefWidth="145.0" promptText="Password" />
                         <Label fx:id="loginUserNameLabel" layoutX="177.0" layoutY="18.0" prefHeight="18.0" prefWidth="173.0" textFill="#d9534f">
                            <font>
                               <Font size="14.0" />
@@ -36,6 +35,7 @@
                            <font>
                               <Font size="14.0" />
                            </font></Label>
+                        <ComboBox fx:id="loginUserName" editable="true" layoutX="19.0" layoutY="14.0" maxHeight="30.0" maxWidth="145.0" minHeight="30.0" minWidth="145.0" prefHeight="30.0" prefWidth="145.0" promptText="Username" styleClass="username-combo-box" />
                      </children>
                   </AnchorPane>
                   <Button layoutY="170.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="148.0" styleClass="button-as-text" text="New librarian? Sign Up" />
@@ -53,14 +53,14 @@
                   </Text>
                   <AnchorPane layoutY="40.0" prefHeight="103.0" prefWidth="332.0" style="-fx-background-color: #F5F5F5; -fx-background-radius: 0 0 6 6; -fx-border-radius: 0 0 6 6;">
                      <children>
-                        <Button layoutX="16.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToStudentRegistration" prefHeight="27.0" prefWidth="150.0" styleClass="button-as-text" text="Student Registration Form" />
+                        <Button layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToStudentRegistration" prefHeight="27.0" prefWidth="150.0" styleClass="button-as-text" text="Student Registration Form" />
                         <Button layoutX="14.0" layoutY="45.0" mnemonicParsing="false" onAction="#switchToSearchBook" prefHeight="27.0" prefWidth="81.0" styleClass="button-as-text" text="Search Book" />
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
          </children></AnchorPane>
-      <Text fill="#201a1a" layoutX="30.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Library Management System" wrappingWidth="321.33674240112305">
+      <Text fill="#201a1a" layoutX="30.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Library Management System" wrappingWidth="331.9999999999999">
          <font>
             <Font size="25.0" />
          </font>

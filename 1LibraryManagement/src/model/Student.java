@@ -6,8 +6,8 @@ public class Student {
 	private String studentFirstName;
 	private String studentLastName;
 	private String studentPhoneNumber;
-	private String studentUsername;
-	private String studentPassword;
+	private String studentEmail;
+	private String studentDepartment;
 	private String studentMembershipDate;
 	private String[] studentBorrowedBooks;
 	private String[] studentReturnDate;
@@ -15,14 +15,14 @@ public class Student {
 	
 	
 	public Student(long studentId, String studentFirstName, String studentLastName, String studentPhoneNumber,
-			String studentUsername, String studentPassword, String studentMembershipDate, String[] studentBorrowedBooks,
+			String studentEmail, String studentDepartment, String studentMembershipDate, String[] studentBorrowedBooks,
 			String[] studentReturnDate, int studentLateFee) {
 		this.setStudentId(studentId);
 		this.setStudentFirstName(studentFirstName);
 		this.setStudentLastName(studentLastName);
 		this.setStudentPhoneNumber(studentPhoneNumber);
-		this.setStudentUsername(studentUsername);
-		this.setStudentPassword(studentPassword);
+		this.setStudentEmail(studentEmail);
+		this.setStudentDepartment(studentDepartment);
 		this.setStudentMembershipDate(studentMembershipDate);
 		this.setStudentBorrowedBooks(studentBorrowedBooks);
 		this.setStudentReturnDate(studentReturnDate);
@@ -53,17 +53,17 @@ public class Student {
 	public void setStudentPhoneNumber(String studentPhoneNumber) {
 		this.studentPhoneNumber = studentPhoneNumber;
 	}
-	public String getStudentUsername() {
-		return studentUsername;
+	public String getStudentEmail() {
+		return studentEmail;
 	}
-	public void setStudentUsername(String studentUsername) {
-		this.studentUsername = studentUsername;
+	public void setStudentEmail(String studentEmail) {
+		this.studentEmail = studentEmail;
 	}
-	public String getStudentPassword() {
-		return studentPassword;
+	public String getStudentDepartment() {
+		return studentDepartment;
 	}
-	public void setStudentPassword(String studentPassword) {
-		this.studentPassword = studentPassword;
+	public void setStudentDepartment(String studentDepartment) {
+		this.studentDepartment = studentDepartment;
 	}
 	public String getStudentMembershipDate() {
 		return studentMembershipDate;

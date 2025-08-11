@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="273.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FindStudentPopUpController">
+   <children>
+      <AnchorPane layoutX="12.0" layoutY="14.0" prefHeight="20.0" prefWidth="775.0" style="-fx-background-color: #D8F4A0;">
+         <children>
+            <Text fill="#4c5e22" layoutX="182.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Details" textAlignment="CENTER" wrappingWidth="379.7400016784668" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="13.0" layoutY="172.0" prefHeight="20.0" prefWidth="775.0" style="-fx-background-color: #D8F4A0;">
+         <children>
+            <Text fill="#4c5e22" layoutX="182.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Issued Books Details" textAlignment="CENTER" wrappingWidth="379.7400016784668" />
+         </children>
+      </AnchorPane>
+      <Text layoutX="13.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student ID" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Text layoutX="13.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of the student" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Text layoutX="13.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Text layoutX="13.0" layoutY="118.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Text layoutX="13.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Text layoutX="13.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Membership Date" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Text layoutX="13.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Issue ID" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Text layoutX="13.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of book" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Text layoutX="13.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Return date" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Label fx:id="idLabel" layoutX="222.0" layoutY="43.0" prefHeight="21.0" prefWidth="506.0" />
+      <Label fx:id="nameLabel" layoutX="222.0" layoutY="64.0" prefHeight="21.0" prefWidth="506.0" />
+      <Label fx:id="numberLabel" layoutX="222.0" layoutY="85.0" prefHeight="21.0" prefWidth="506.0" />
+      <Label fx:id="departmentLabel" layoutX="222.0" layoutY="103.0" prefHeight="21.0" prefWidth="506.0" />
+      <Label fx:id="emailLabel" layoutX="222.0" layoutY="122.0" prefHeight="21.0" prefWidth="506.0" />
+      <Label fx:id="membershipLabel" layoutX="222.0" layoutY="143.0" prefHeight="21.0" prefWidth="506.0" />
+      <Label fx:id="issuedIDLabel" layoutX="222.0" layoutY="199.0" prefHeight="21.0" prefWidth="506.0" />
+      <Label fx:id="issuedNameLabel" layoutX="222.0" layoutY="220.0" prefHeight="21.0" prefWidth="506.0" />
+      <Label fx:id="issuedReturnLabel" layoutX="222.0" layoutY="241.0" prefHeight="21.0" prefWidth="506.0" />
+   </children>
+</AnchorPane>

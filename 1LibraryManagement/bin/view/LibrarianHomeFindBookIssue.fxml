@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="131.0" prefWidth="662.0" style="-fx-background-color: #C0C0C0; -fx-background-radius: 4 4 0 0; -fx-border-radius: 4 4 0 0;" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LibrarianHomeController">
+   <children>
+      <AnchorPane layoutY="-2.0" prefHeight="82.0" prefWidth="662.0" style="-fx-background-color: #eaeaea; -fx-background-radius: 4 4 4 4; -fx-border-radius: 4 4 4 4;">
+         <children>
+            <Text layoutX="14.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Enter Issued Book ID " textAlignment="CENTER" wrappingWidth="136.936767578125" />
+            <TextField fx:id="findBookIssuedTextField" layoutX="151.0" layoutY="17.0" prefHeight="30.0" prefWidth="387.0" />
+            <Button layoutX="554.0" layoutY="17.0" mnemonicParsing="false" onAction="#findBookIssued" prefHeight="13.0" prefWidth="94.0" style="-fx-background-color: #5F9EA0;" text="Submit" textFill="WHITE" />
+            <Label fx:id="successMessageLabel2" layoutX="158.0" layoutY="57.0" prefHeight="22.0" prefWidth="373.0" styleClass="registrationsuccess-message" textAlignment="CENTER" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

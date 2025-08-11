@@ -4,16 +4,16 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox stylesheets="@../css/tableViewStudents.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SearchBookTableController">
+<VBox stylesheets="@../css/tableViewStudents.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SearchBookTableController">
    <children>
-      <TableView fx:id="searchBookTable" prefHeight="302.0" prefWidth="680.0" stylesheets="@../css/tableViewStudents.css">
+      <TableView fx:id="searchBookTable" prefHeight="302.0" prefWidth="700.0" stylesheets="@../css/tableViewStudents.css">
          <columns>
             <TableColumn fx:id="bookIdColumn" text="Book ID" />
             <TableColumn fx:id="bookTitleColumn" prefWidth="108.0" text="Book Title" />
             <TableColumn fx:id="bookAuthorColumn" prefWidth="110.0" text="Author" />
             <TableColumn fx:id="bookDescriptionColumn" prefWidth="216.0" text="Description" />
             <TableColumn fx:id="bookCategoryColumn" prefWidth="87.0" text="Category" />
-            <TableColumn fx:id="bookStatusColumn" prefWidth="72.0" text="Status" />
+            <TableColumn fx:id="bookStatusColumn" prefWidth="90.0" text="Status" />
          </columns>
       </TableView>
    </children>

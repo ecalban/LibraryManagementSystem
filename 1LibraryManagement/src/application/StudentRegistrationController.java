@@ -22,14 +22,15 @@ import javafx.scene.control.Tooltip;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.Country;
+import model.Department;
 
 public class StudentRegistrationController {
 
 	@FXML
 	private ComboBox<String> countryComboBox;
-	
+
 	@FXML
-	private ComboBox<String> majorComboBox;
+	private ComboBox<String> departmentComboBox;
 
 	@FXML
 	public void initialize() {
@@ -38,6 +39,12 @@ public class StudentRegistrationController {
 		for (int i = 0; i < countryList.size(); i++) {
 			countryComboBox.getItems()
 					.add(countryList.get(i).getCountryCode() + " " + countryList.get(i).getPhoneCode());
+		}
+
+		departmentComboBox.setPromptText("Accounting");
+		ArrayList<Department> departmentList = DBtoArrayList.departmentToArrayList();
+		for (int i = 0; i < departmentList.size(); i++) {
+			departmentComboBox.getItems().add(departmentList.get(i).getDepartmentName());
 		}
 
 		Tooltip usernameTooltip = new Tooltip(
@@ -80,13 +87,19 @@ public class StudentRegistrationController {
 	@FXML
 	TextField email;
 	String enteredEmail;
-	String selectedItem;
+	String selectedCountry;
+	String selectedDepartment;
 	@FXML
 	private Label successMessageLabel;
 
 	@FXML
-	private void handleComboBoxAction() {
-		selectedItem = countryComboBox.getValue();
+	private void handleCountryAction() {
+		selectedCountry = countryComboBox.getValue();
+	}
+
+	@FXML
+	private void handleDepartmentAction() {
+		selectedDepartment = departmentComboBox.getValue();
 	}
 
 	@FXML
@@ -121,19 +134,22 @@ public class StudentRegistrationController {
 			return;
 		}
 		enteredEmail = email.getText();
-		if (!checkUsername(enteredEmail)) {
+		if (!checkEmail(enteredEmail)) {
 			email.setPromptText("The email is already in use or invalid.");
 			email.clear();
 			displayWrongInputLabel();
 			return;
 		}
-		if (selectedItem == null) {
-			selectedItem = "US +1";
+		if (selectedCountry == null) {
+			selectedCountry = "US +1";
 		}
-		String sql = "INSERT INTO studentForApprove (studentId, studentFirstName, studentLastName, studentPhoneNumber, studentUsername) "
-				+ "VALUES (?, ?, ?, ?, ?)";
-		addToDatabase(sql, enteredID, enteredFirstName, enteredLastName, selectedItem + enteredPhoneNumber,
-				enteredEmail);
+		if (selectedDepartment == null) {
+			selectedDepartment = "Accounting";
+		}
+		String sql = "INSERT INTO studentForApprove (studentId, studentFirstName, studentLastName, studentPhoneNumber, studentDepartment, studentEmail) "
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
+		addToDatabase(sql, enteredID, enteredFirstName, enteredLastName, selectedCountry + enteredPhoneNumber,
+				selectedDepartment, enteredEmail);
 		successMessageLabel.setText(" Registration successful. Await librarian approval.");
 		successMessageLabel.setVisible(true);
 		successMessageLabel.setStyle("-fx-background-color: #5F9EA0;");
@@ -161,7 +177,7 @@ public class StudentRegistrationController {
 	}
 
 	private void addToDatabase(String sql, String enteredID, String enteredFirstName, String enteredLastName,
-			String enteredPhoneNumber, String enteredUsername) {
+			String enteredPhoneNumber, String selectedDepartment, String enteredEmail) {
 		try {
 			Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
 					"postgres", "eren20044");
@@ -170,7 +186,8 @@ public class StudentRegistrationController {
 			stmt.setString(2, enteredFirstName);
 			stmt.setString(3, enteredLastName);
 			stmt.setString(4, enteredPhoneNumber);
-			stmt.setString(5, enteredUsername);
+			stmt.setString(5, selectedDepartment);
+			stmt.setString(6, enteredEmail);
 			stmt.executeUpdate();
 			con.close();
 		} catch (SQLException e) {
@@ -179,15 +196,15 @@ public class StudentRegistrationController {
 
 	}
 
-
-	private boolean checkUsername(String enteredUsername) throws SQLException {
-		String sql = "SELECT * FROM studentforapprove WHERE studentusername = " + "'" + enteredUsername + "'";
+	private boolean checkEmail(String enteredEmail) throws SQLException {
+		String sql = "SELECT * FROM studentforapprove WHERE studentemail = " + "'" + enteredEmail + "'";
 		ResultSet rs = executeQuery(sql);
 		if (rs.next()) {
 			return false;
 		}
-		String regex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
-		return enteredUsername.matches(regex);
+		String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+
+		return enteredEmail.matches(regex);
 
 	}
 

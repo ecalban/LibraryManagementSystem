@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Country;
+import model.Department;
+import model.RememberedUser;
 import model.StudentForApprove;
 import model.Book;
 
@@ -38,6 +40,50 @@ public class DBtoArrayList {
 			System.out.println("An error: " + e);
 		}
 		return countryArrayList;
+	}
+	
+
+
+	public static ArrayList<Department> departmentToArrayList() {
+		try {
+			con = DriverManager.getConnection(url, username, password);
+		} catch (SQLException e) {
+			System.out.println("An error: " + e);
+		}
+		String sql = "SELECT * FROM departments";
+		ArrayList<Department> departmentArrayList = new ArrayList<Department>();
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				model.Department department = new Department(rs.getString(1));
+				departmentArrayList.add(department);
+			}
+		} catch (SQLException e) {
+			System.out.println("An error: " + e);
+		}
+		return departmentArrayList;
+	}
+	
+	public static ArrayList<RememberedUser> rememberedToArrayList() {
+		try {
+			con = DriverManager.getConnection(url, username, password);
+		} catch (SQLException e) {
+			System.out.println("An error: " + e);
+		}
+		String sql = "SELECT * FROM remembereduser";
+		ArrayList<RememberedUser> userArrayList = new ArrayList<RememberedUser>();
+		try {
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				model.RememberedUser users = new RememberedUser(rs.getString(1));
+				userArrayList.add(users);
+			}
+		} catch (SQLException e) {
+			System.out.println("An error: " + e);
+		}
+		return userArrayList;
 	}
 	
 	
@@ -101,5 +147,6 @@ public class DBtoArrayList {
 		}
 		return categoryArrayList;
 	}
+
 	
 }

@@ -25,9 +25,9 @@ public class StudentsRegisteredTableController {
 	@FXML
 	TableColumn<StudentForApprove, String> studentPhoneNumberColumn;
 	@FXML
-	TableColumn<StudentForApprove, String> studentUsernameColumn;
+	TableColumn<StudentForApprove, String> studentEmailColumn;
 	@FXML
-	TableColumn<StudentForApprove, String> studentPasswordColumn;
+	TableColumn<StudentForApprove, String> studentDepartmentColumn;
 
 	@SuppressWarnings("deprecation")
 	@FXML
@@ -36,10 +36,9 @@ public class StudentsRegisteredTableController {
 		studentFirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("studentFirstName"));
 		studentLastNameColumn.setCellValueFactory(new PropertyValueFactory<>("studentLastName"));
 		studentPhoneNumberColumn.setCellValueFactory(new PropertyValueFactory<>("studentPhoneNumber"));
-		studentUsernameColumn.setCellValueFactory(new PropertyValueFactory<>("studentUsername"));
-		studentPasswordColumn.setCellValueFactory(new PropertyValueFactory<>("studentPassword"));
+		studentEmailColumn.setCellValueFactory(new PropertyValueFactory<>("studentEmail"));
+		studentDepartmentColumn.setCellValueFactory(new PropertyValueFactory<>("studentDepartment"));
 		studentApproveTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
 		ObservableList<StudentForApprove> observableList = FXCollections
 				.observableArrayList(StudentsRegisteredTableController.studentApproveList);
 		studentApproveTable.setItems(observableList);

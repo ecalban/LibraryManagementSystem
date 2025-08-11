@@ -47,10 +47,12 @@
     -fx-background-color: #C0C0C0;
 }
 
+
 .registration-combo-box{
 	-fx-background-color: #C0C0C0;
 	-fx-border-color: #C0C0C0;
 }
+
 .text-field:focused {
     -fx-focus-color: #5F9EA0;
     -fx-faint-focus-color: #dcdcdc;
@@ -95,8 +97,56 @@
 }
 
 
+.username-combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #bfbfbf;       /* Normalde açık gri dış çerçeve */
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+    -fx-font-size: 13px;
+    -fx-pref-height: 30px;
+    -fx-alignment: CENTER_LEFT;      /* Yazıyı sola hizalar */
+}
+
+.username-combo-box:focused {
+	-fx-border-radius: 1;
+	-fx-background-radius: 1;
+	-fx-border-color: #5F9EA0;  /* Mavi dış çerçeve */
+	-fx-effect: dropshadow(gaussian, rgba(220, 220, 220, 0.7), 4, 0, 0, 0); /* Hafif gri gölge */
+}
 
 
+/* Ok butonunu tamamen gizle */
+.username-combo-box .arrow-button {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-shape: "";
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+    -fx-opacity: 0;
+    -fx-border-width: 0;
+    -fx-background-insets: 0;
+}
 
+/* username-combo-box içindeki text-field için özel durum */
+.username-combo-box .text-field {
+    -fx-border-color: transparent;  /* Normalde border yok */
+    -fx-background-color: white;
+}
 
+.username-combo-box .text-field:focused {
+    -fx-border-color: transparent;  /* Odaklandığında da border yok */
+    -fx-effect: none;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+.username-combo-box .list-cell {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-padding: 4 6 4 6;
+}
 
+.username-combo-box .list-cell:hover {
+    -fx-background-color: #e6f2f2;
+}
