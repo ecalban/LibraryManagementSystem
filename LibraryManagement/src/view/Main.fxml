@@ -38,7 +38,7 @@
                         <ComboBox fx:id="loginUserName" editable="true" layoutX="19.0" layoutY="14.0" maxHeight="30.0" maxWidth="145.0" minHeight="30.0" minWidth="145.0" prefHeight="30.0" prefWidth="145.0" promptText="Username" styleClass="username-combo-box" />
                      </children>
                   </AnchorPane>
-                  <Button layoutY="170.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="148.0" styleClass="button-as-text" text="New librarian? Sign Up" />
+                  <Button layoutY="170.0" mnemonicParsing="false" onAction="#switchToLibrarianSignUp" prefHeight="30.0" prefWidth="148.0" styleClass="button-as-text" text="New librarian? Sign Up" />
                </children>
                <cursor>
                   <Cursor fx:constant="DEFAULT" />

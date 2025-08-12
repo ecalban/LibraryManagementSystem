@@ -11,41 +11,36 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="1058.0" style="-fx-background-color: #eaeaea;" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StudentRegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="1058.0" style="-fx-background-color: #eaeaea;" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LibrarianSignUpController">
    <children>
       <AnchorPane layoutY="52.0" prefHeight="393.0" prefWidth="1058.0" style="-fx-background-color: #C0C0C0;">
          <children>
             <AnchorPane layoutX="213.0" layoutY="86.0" prefHeight="267.0" prefWidth="632.0" style="-fx-background-color: #DCDCDC; -fx-background-radius: 6 6 6 6; -fx-border-radius: 6 6 6 6;">
                <children>
-                  <Button layoutX="489.0" layoutY="217.0" mnemonicParsing="false" onAction="#studentRegister" prefHeight="30.0" prefWidth="128.0" style="-fx-background-color: #5F9EA0; -fx-border-width: 2px; -fx-border-color: #4F8A8B; -fx-border-radius: 3px;" text="Register for Library" textFill="WHITE" />
-                  <Text layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student Registration Form">
+                  <Button layoutX="519.0" layoutY="217.0" mnemonicParsing="false" onAction="#signUp" prefHeight="30.0" prefWidth="98.0" style="-fx-background-color: #5F9EA0; -fx-border-width: 2px; -fx-border-color: #4F8A8B; -fx-border-radius: 3px;" text="Sign Up" textFill="WHITE" />
+                  <Text layoutX="14.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Librarian Sign Up Form" wrappingWidth="237.0">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Text>
                   <AnchorPane layoutY="38.0" prefHeight="170.0" prefWidth="632.0" style="-fx-background-color: #F5F5F5;">
                      <children>
-                        <TextField fx:id="firstName" layoutX="14.0" layoutY="14.0" prefHeight="34.0" prefWidth="292.0" promptText="First Name">
+                        <TextField fx:id="fullName" layoutX="14.0" layoutY="14.0" prefHeight="34.0" prefWidth="292.0" promptText="Full Name">
                            <tooltip>
-                              <Tooltip text="Please enter a first name with only letters. The first name must be between 1 and 25 characters long." />
+                              <Tooltip text="Please enter a full name using only letters and single spaces.Each name must be between 1 and 25 characters long." />
                            </tooltip></TextField>
-                        <TextField fx:id="lastName" layoutX="320.0" layoutY="14.0" prefHeight="34.0" prefWidth="298.0" promptText="Last Name">
-                           <tooltip>
-                              <Tooltip text="Please enter a last name with only letters. The last name must be between 1 and 25 characters long." />
-                           </tooltip></TextField>
-                        <TextField fx:id="studentID" layoutX="14.0" layoutY="68.0" prefHeight="34.0" prefWidth="243.0" promptText="Student ID">
-                           <tooltip>
-                              <Tooltip text="Please enter a student ID with exactly 11 digits. The ID must contain only numbers." />
-                           </tooltip></TextField>
-                        <TextField fx:id="phoneNumber" layoutX="267.0" layoutY="68.0" prefHeight="34.0" prefWidth="250.0" promptText="Phone Number">
+                        <TextField fx:id="userName" layoutX="320.0" layoutY="14.0" prefHeight="34.0" prefWidth="298.0" promptText="Username" />
+                        <TextField fx:id="phoneNumber" layoutX="14.0" layoutY="121.0" prefHeight="34.0" prefWidth="250.0" promptText="Phone Number">
                            <tooltip>
                               <Tooltip text="Please enter a phone number with only digits. The number must be between 7 and 15 digits long." />
                            </tooltip></TextField>
-                        <ComboBox fx:id="countryComboBox" layoutX="529.0" layoutY="70.0" onAction="#handleCountryAction" prefHeight="30.0" prefWidth="88.0" styleClass="country-combo-box" />
+                        <ComboBox fx:id="countryComboBox" layoutX="282.0" layoutY="123.0" onAction="#handleCountryAction" prefHeight="30.0" prefWidth="88.0" styleClass="country-combo-box" />
                         <Line endX="824.3999633789062" endY="233.99998474121094" layoutX="-212.0" layoutY="-125.0" opacity="0.1" startX="230.6999969482422" startY="234.0" />
-                        <TextField fx:id="email" layoutX="14.0" layoutY="121.0" prefHeight="34.0" prefWidth="354.0" promptText="Email" />
                         <Line endX="824.3999633789062" endY="233.99998474121094" layoutX="-213.0" layoutY="-175.0" opacity="0.1" startX="230.6999969482422" startY="234.0" />
-                        <ComboBox fx:id="departmentComboBox" layoutX="380.0" layoutY="123.0" onAction="#handleDepartmentAction" prefHeight="30.0" prefWidth="237.0" styleClass="country-combo-box" />
+                        <ComboBox fx:id="cvComboBox" layoutX="380.0" layoutY="123.0" prefHeight="30.0" prefWidth="237.0" promptText="Select CV" styleClass="country-combo-box" />
+                        <TextField fx:id="email" layoutX="14.0" layoutY="68.0" prefHeight="34.0" prefWidth="354.0" promptText="Email" />
+                        <TextField fx:id="password" layoutX="381.0" layoutY="68.0" prefHeight="34.0" prefWidth="237.0" promptText="Password" />
+                        <Button fx:id="btnSelectCV" layoutX="379.0" layoutY="124.0" mnemonicParsing="false" onAction="#selectCV" prefHeight="30.0" prefWidth="237.0" style="-fx-background-color: transparent; -fx-border-color: transparent;" />
                      </children>
                   </AnchorPane>
                   <Button layoutY="230.0" mnemonicParsing="false" onAction="#switchToMain" prefHeight="30.0" prefWidth="88.0" styleClass="button-as-text" text="Go Back!" />

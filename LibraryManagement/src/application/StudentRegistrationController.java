@@ -47,11 +47,11 @@ public class StudentRegistrationController {
 			departmentComboBox.getItems().add(departmentList.get(i).getDepartmentName());
 		}
 
-		Tooltip usernameTooltip = new Tooltip(
-				"Please enter a username with at least one uppercase letter, one lowercase letter,\n"
-						+ " and no spaces. The username can include numbers and special characters,\n"
-						+ " and must be between 5 and 25 characters long.");
-		email.setTooltip(usernameTooltip);
+		Tooltip emailTooltip = new Tooltip(
+				"Please enter a valid email address in the format username@domain.extension.\n"
+						+ "Only letters, numbers, and the characters . _ % + - are allowed before the @,\n"
+						+ "and the domain must contain only letters, numbers, dots, and hyphens.");
+		email.setTooltip(emailTooltip);
 		successMessageLabel.setVisible(false);
 	}
 

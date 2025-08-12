@@ -99,23 +99,22 @@
 
 .username-combo-box {
     -fx-background-color: white;
-    -fx-border-color: #bfbfbf;       /* Normalde açık gri dış çerçeve */
+    -fx-border-color: #bfbfbf;       
     -fx-border-radius: 3;
     -fx-background-radius: 3;
     -fx-font-size: 13px;
     -fx-pref-height: 30px;
-    -fx-alignment: CENTER_LEFT;      /* Yazıyı sola hizalar */
+    -fx-alignment: CENTER_LEFT;     
 }
 
 .username-combo-box:focused {
 	-fx-border-radius: 1;
 	-fx-background-radius: 1;
-	-fx-border-color: #5F9EA0;  /* Mavi dış çerçeve */
-	-fx-effect: dropshadow(gaussian, rgba(220, 220, 220, 0.7), 4, 0, 0, 0); /* Hafif gri gölge */
+	-fx-border-color: #5F9EA0;  
+	-fx-effect: dropshadow(gaussian, rgba(220, 220, 220, 0.7), 4, 0, 0, 0); 
 }
 
 
-/* Ok butonunu tamamen gizle */
 .username-combo-box .arrow-button {
     -fx-padding: 0;
     -fx-background-color: transparent;
@@ -129,14 +128,13 @@
     -fx-background-insets: 0;
 }
 
-/* username-combo-box içindeki text-field için özel durum */
 .username-combo-box .text-field {
-    -fx-border-color: transparent;  /* Normalde border yok */
+    -fx-border-color: transparent;  
     -fx-background-color: white;
 }
 
 .username-combo-box .text-field:focused {
-    -fx-border-color: transparent;  /* Odaklandığında da border yok */
+    -fx-border-color: transparent;  
     -fx-effect: none;
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;

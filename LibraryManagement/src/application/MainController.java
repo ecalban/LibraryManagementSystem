@@ -38,14 +38,12 @@ public class MainController {
 		}
 		loginUserName.setEditable(true);
 
-		// ComboBox'un editörüne tıklayınca listeyi aç
 		loginUserName.getEditor().setOnMouseClicked(event -> {
 		    if (!loginUserName.isShowing()) {
 		    	loginUserName.show();
 		    }
 		});
 
-		// ComboBox kutucuğuna da tıklayınca listeyi aç
 		loginUserName.setOnMouseClicked(event -> {
 		    if (!loginUserName.isShowing()) {
 		    	loginUserName.show();
@@ -93,6 +91,12 @@ public class MainController {
 		}
 	}
 
+	@FXML
+	public void switchToLibrarianSignUp(ActionEvent event) {
+		switchToScene(event, "/view/LibrarianSignUp.fxml");
+	}
+
+	
 	@FXML
 	public void switchToStudentRegistration(ActionEvent event) {
 		switchToScene(event, "/view/StudentRegistration.fxml");
