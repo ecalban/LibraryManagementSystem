@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyEvent;
@@ -123,7 +124,7 @@ public class LibrarianSignUpController {
 	TextField userName;
 	String enteredUserName;
 	@FXML
-	TextField password;
+	PasswordField password;
 	String enteredPassword;
 	@FXML
 	TextField phoneNumber;
@@ -131,7 +132,6 @@ public class LibrarianSignUpController {
 	@FXML
 	TextField email;
 	String enteredEmail;
-	String selectedDepartment;
 
 	@FXML
 	private Label successMessageLabel;
@@ -204,7 +204,8 @@ public class LibrarianSignUpController {
 		Date sqlDate = Date.valueOf(localDate); 
 		addToDatabase(sql, String.valueOf(randomDigit), enteredFullName, selectedCountry + enteredPhoneNumber, enteredUserName, enteredPassword,
 				sqlDate, enteredEmail);
-		successMessageLabel.setText(" Registration successful. Await librarian approval.");
+		successMessageLabel.setText("          Your application has been submitted.\r\n"
+				+ "       Please log in to your account to check your application status.");
 		successMessageLabel.setVisible(true);
 		successMessageLabel.setStyle("-fx-background-color: #5F9EA0;");
 		FadeTransition fadeOut = new FadeTransition(Duration.seconds(5), successMessageLabel);
@@ -256,7 +257,7 @@ public class LibrarianSignUpController {
 	}
 
 	private boolean checkEmail(String enteredEmail) throws SQLException {
-		String sql = "SELECT * FROM studentforapprove WHERE studentemail = " + "'" + enteredEmail + "'";
+		String sql = "SELECT * FROM librarians WHERE librarianemail = " + "'" + enteredEmail + "'";
 		ResultSet rs = executeQuery(sql);
 		if (rs.next()) {
 			return false;

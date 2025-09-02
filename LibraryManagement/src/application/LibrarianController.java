@@ -1,6 +1,12 @@
 package application;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import dao.DBtoArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class LibrarianController {
@@ -45,6 +52,36 @@ public class LibrarianController {
 		menuBox.setVisible(!isVisible);
 		menuBox.setManaged(!isVisible);
 	}
+	
+
+	
+	@FXML
+	public void librarianShowProfile(ActionEvent event) throws IOException, SQLException {
+		String sql = "SELECT * FROM librarians WHERE isactive = TRUE";
+		LibrarianProfilePopUpController.rs = executeQuery(sql);
+		Stage popupStage = new Stage();
+		popupStage.initModality(Modality.APPLICATION_MODAL);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LibrarianShowProfile.fxml"));
+		Scene scene = new Scene(loader.load());
+		popupStage.setScene(scene);
+		popupStage.setResizable(false);
+		popupStage.showAndWait();
+	}
+	
+	
+	@FXML
+	public void librarianEditProfile(ActionEvent event) throws IOException, SQLException {
+		String sql = "SELECT * FROM librarians WHERE isactive = TRUE";
+		LibrarianEditProfilePopUpController.rs = executeQuery(sql);
+		Stage popupStage = new Stage();
+		popupStage.initModality(Modality.APPLICATION_MODAL);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LibrarianEditProfile.fxml"));
+		Scene scene = new Scene(loader.load());
+		popupStage.setScene(scene);
+		popupStage.setResizable(false);
+		popupStage.showAndWait();
+	}
+
 
 	public void switchToScene(ActionEvent event, String fileName) {
 		try {
@@ -201,5 +238,15 @@ public class LibrarianController {
 			System.out.println("An error: " + e);
 		}
 	}
+	
+	private ResultSet executeQuery(String sql) throws SQLException {
+		Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB", "postgres",
+				"eren20044");
+		PreparedStatement pst = con.prepareStatement(sql);
+		ResultSet rs = pst.executeQuery();
+		con.close();
+		return rs;
+	}
+
 
 }

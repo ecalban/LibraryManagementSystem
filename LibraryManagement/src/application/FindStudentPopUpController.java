@@ -38,7 +38,7 @@ public class FindStudentPopUpController {
 	public void initialize() throws SQLException {
 		if (rs.next()) {
 			idLabel.setText(String.valueOf(rs.getLong(1)));
-			nameLabel.setText(rs.getString(2) + rs.getString(3));
+			nameLabel.setText(rs.getString(2) + " " + rs.getString(3));
 			numberLabel.setText(rs.getString(4));
 			departmentLabel.setText(rs.getString(5));
 			emailLabel.setText(rs.getString(6));

@@ -25,13 +25,12 @@ import javafx.util.Duration;
 import model.RememberedUser;
 
 public class MainController {
-	
 
 	@FXML
-	ComboBox<String> loginUserName;	
-	
+	ComboBox<String> loginUserName;
+
 	@FXML
-	public void initialize() {
+	public void initialize() throws SQLException {
 		ArrayList<RememberedUser> userList = DBtoArrayList.rememberedToArrayList();
 		for (int i = 0; i < userList.size(); i++) {
 			loginUserName.getItems().add(userList.get(i).getUserName());
@@ -39,44 +38,58 @@ public class MainController {
 		loginUserName.setEditable(true);
 
 		loginUserName.getEditor().setOnMouseClicked(event -> {
-		    if (!loginUserName.isShowing()) {
-		    	loginUserName.show();
-		    }
+			if (!loginUserName.isShowing()) {
+				loginUserName.show();
+			}
 		});
 
 		loginUserName.setOnMouseClicked(event -> {
-		    if (!loginUserName.isShowing()) {
-		    	loginUserName.show();
-		    }
+			if (!loginUserName.isShowing()) {
+				loginUserName.show();
+			}
+		});
+
+		loginUserName.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+			if (newVal != null) {
+				int c = 0;
+				for (int i = 0; i < userList.size(); i++) {
+					if (userList.get(i).getUserName() == newVal) {
+						c = 1;
+					}
+				}
+				if (c == 1) {
+					String password = fetchPasswordForUser(newVal);
+					loginPasswordPasswordField.setText(password);
+				}
+				else {
+					loginPasswordPasswordField.clear();
+				}
+			} else {
+				loginPasswordPasswordField.clear();
+			}
 		});
 		
-	    loginUserName.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-	        if (newVal != null) {
-	            String password = fetchPasswordForUser(newVal);
-	            loginPasswordPasswordField.setText(password);
-	        } else {
-	            loginPasswordPasswordField.clear();
-	        }
-	    });
+		String sql = "UPDATE librarians SET isactive = FALSE";
+		executeUpdate(sql);
 	}
-	
+
 	private String fetchPasswordForUser(String username) {
-	    String password = "";
-	    String sql = "SELECT librarianpassword FROM librarians WHERE librarianusername = ?";
-	    try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB", "postgres", "eren20044");
-	         PreparedStatement pst = con.prepareStatement(sql)) {
+		String password = "";
+		String sql = "SELECT librarianpassword FROM librarians WHERE librarianusername = ?";
+		try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
+				"postgres", "eren20044"); PreparedStatement pst = con.prepareStatement(sql)) {
 
-	        pst.setString(1, username);
-	        ResultSet rs = pst.executeQuery();
+			pst.setString(1, username);
+			ResultSet rs = pst.executeQuery();
 
-	        if (rs.next()) {
-	            password = rs.getString("librarianpassword");
-	        }
+			if (rs.next()) {
+				password = rs.getString("librarianpassword");
+			}
 
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-	    return password;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return password;
 	}
 
 	public void switchToScene(ActionEvent event, String fileName) {
@@ -96,7 +109,6 @@ public class MainController {
 		switchToScene(event, "/view/LibrarianSignUp.fxml");
 	}
 
-	
 	@FXML
 	public void switchToStudentRegistration(ActionEvent event) {
 		switchToScene(event, "/view/StudentRegistration.fxml");
@@ -111,6 +123,7 @@ public class MainController {
 	public void switchToLibrarian(ActionEvent event) {
 		switchToScene(event, "/view/Librarian.fxml");
 	}
+
 	@FXML
 	PasswordField loginPasswordPasswordField;
 
@@ -120,7 +133,7 @@ public class MainController {
 	Label loginPasswordLabel;
 	@FXML
 	CheckBox rememberme;
-	
+
 	String loginEnteredUserName;
 	String loginEnteredPassword;
 
@@ -136,10 +149,12 @@ public class MainController {
 				return;
 			} else {
 				loginEnteredPassword = loginPasswordPasswordField.getText();
-				if (rs.getString(6).equals(loginEnteredPassword)) {
-					if(rememberme.isSelected()) {
+				if (rs.getString(5).equals(loginEnteredPassword)) {
+					if (rememberme.isSelected()) {
 						addToRemembered(loginEnteredUserName);
 					}
+					String sql2 = "UPDATE librarians SET isactive = TRUE WHERE librarianid=" + rs.getInt(1);
+					executeUpdate(sql2);
 					switchToLibrarian(event);
 					return;
 				} else {
@@ -153,21 +168,19 @@ public class MainController {
 		}
 	}
 
-
-
 	private void addToRemembered(String username) {
-	    String sql = "INSERT INTO remembereduser (username) VALUES (?)";
-	    try (Connection con = DriverManager.getConnection(
-	            "jdbc:postgresql://localhost:5432/LibraryManagementDB", "postgres", "eren20044");
-	         PreparedStatement stmt = con.prepareStatement(sql)) {
+		String sql = "INSERT INTO remembereduser (username) VALUES (?)";
+		try (Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB",
+				"postgres", "eren20044"); PreparedStatement stmt = con.prepareStatement(sql)) {
 
-	        stmt.setString(1, username);
-	        stmt.executeUpdate();
+			stmt.setString(1, username);
+			stmt.executeUpdate();
 
-	    } catch (SQLException e) {
-	        System.out.println("An error: " + e);
-	    }
+		} catch (SQLException e) {
+			System.out.println("An error: " + e);
+		}
 	}
+
 	private void displayWrongInputLabel(Label label, String inf) {
 		FadeTransition fadeOut = new FadeTransition(Duration.seconds(5), label);
 		label.setText("Invalid " + inf);
@@ -177,7 +190,7 @@ public class MainController {
 		fadeOut.setOnFinished(e -> label.setVisible(false));
 		fadeOut.play();
 	}
-	
+
 	private ResultSet executeQuery(String sql) throws SQLException {
 		Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB", "postgres",
 				"eren20044");
@@ -185,5 +198,13 @@ public class MainController {
 		ResultSet rs = pst.executeQuery();
 		return rs;
 	}
+	
 
+	private void executeUpdate(String sql) throws SQLException {
+		Connection con = DriverManager.getConnection("jdbc:postgresql://localhost:5432/LibraryManagementDB", "postgres",
+				"eren20044");
+		PreparedStatement pst = con.prepareStatement(sql);
+		pst.executeUpdate();
+		con.close();
+	}
 }

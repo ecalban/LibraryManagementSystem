@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="219.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LibrarianProfilePopUpController">
+   <children>
+      <AnchorPane layoutX="12.0" layoutY="14.0" prefHeight="20.0" prefWidth="775.0" style="-fx-background-color: #D8F4A0;">
+         <children>
+            <Text fill="#4c5e22" layoutX="182.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Librarian Details" textAlignment="CENTER" wrappingWidth="379.7400016784668" />
+         </children>
+      </AnchorPane>
+      <Text layoutX="13.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Librarian ID" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Text layoutX="13.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of the librarian" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Text layoutX="13.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Label fx:id="idLabel" layoutX="222.0" layoutY="45.0" prefHeight="21.0" prefWidth="555.0" />
+      <Label fx:id="phoneNumberLabel" layoutX="222.0" layoutY="90.0" prefHeight="21.0" prefWidth="506.0" />
+      <Label fx:id="usernameLabel" alignment="TOP_LEFT" layoutX="222.0" layoutY="114.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="24.0" prefWidth="568.0" />
+      <Label fx:id="passwordLabel" layoutX="222.0" layoutY="137.0" prefHeight="21.0" prefWidth="506.0" />
+      <Text layoutX="13.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Text layoutX="13.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Text layoutX="13.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Text layoutX="13.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" textAlignment="RIGHT" wrappingWidth="174.7400016784668" />
+      <Label fx:id="nameLabel" layoutX="222.0" layoutY="68.0" prefHeight="21.0" prefWidth="555.0" />
+      <Label fx:id="startdateLabel" layoutX="222.0" layoutY="163.0" prefHeight="21.0" prefWidth="506.0" />
+      <Label fx:id="emailLabel" layoutX="222.0" layoutY="186.0" prefHeight="21.0" prefWidth="506.0" />
+   </children>
+</AnchorPane>
