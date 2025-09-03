@@ -30,7 +30,7 @@
       </Button>
       <AnchorPane layoutX="16.0" layoutY="12.0" prefHeight="20.0" prefWidth="775.0" style="-fx-background-color: #D8F4A0;">
          <children>
-            <Text fill="#4c5e22" layoutX="182.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Librarian Details" textAlignment="CENTER" wrappingWidth="379.7400016784668" />
+            <Text fill="#4c5e22" layoutX="182.0" layoutY="15.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit Profile" textAlignment="CENTER" wrappingWidth="379.7400016784668" />
          </children>
       </AnchorPane>
       <TextField fx:id="phoneNumber" layoutX="406.0" layoutY="95.0" prefHeight="30.0" prefWidth="278.0" promptText="Phone Number">

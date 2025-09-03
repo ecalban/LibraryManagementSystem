@@ -70,12 +70,12 @@
          </font>
       </Text>
       <Text fill="#201a1a" layoutX="80.0" layoutY="485.0" strokeType="OUTSIDE" strokeWidth="0.0" text="© 2025 INU - Automated Library Management System" wrappingWidth="360.5367546081543" />
-      <Hyperlink layoutX="90.0" layoutY="495.0" prefHeight="24.0" prefWidth="195.0" text="https://github.com/ecalban" textFill="CADETBLUE" />
+      <Hyperlink fx:id="githubLink" layoutX="90.0" layoutY="495.0" prefHeight="24.0" prefWidth="195.0" text="https://github.com/ecalban" textFill="CADETBLUE" />
       <VBox fx:id="menuBox" layoutX="800.0" layoutY="43.0" prefHeight="90.0" prefWidth="130.0" visible="false">
          <children>
             <Button mnemonicParsing="false" onAction="#librarianShowProfile" prefHeight="30.0" prefWidth="158.0" style="-fx-border-radius: 4 4 0 0; -fx-background-radius: 4 4 0 0;" styleClass="button-menu" text="Profile" />
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#librarianEditProfile" prefHeight="30.0" prefWidth="159.0" style="-fx-background-radius: 0 0 0 0; -fx-border-radius: 0 0 0 0;" styleClass="button-menu" text="Edit Profile" />
-            <Button layoutX="10.0" layoutY="65.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="159.0" style="-fx-background-radius: 0 0 4 4; -fx-border-radius: 0 0 4 4;" styleClass="button-menu-view-issued-logout" text="Change Password" />
+            <Button layoutX="10.0" layoutY="65.0" mnemonicParsing="false" onAction="#librarianChangePassword" prefHeight="30.0" prefWidth="159.0" style="-fx-background-radius: 0 0 4 4; -fx-border-radius: 0 0 4 4;" styleClass="button-menu-view-issued-logout" text="Change Password" />
          </children></VBox>
       <Button fx:id="profileButton" focusTraversable="false" layoutX="910.0" layoutY="10.0" mnemonicParsing="false" onAction="#profileButton" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" />
       <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="949.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">

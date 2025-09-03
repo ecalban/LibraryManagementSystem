@@ -22,6 +22,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -40,9 +41,18 @@ public class LibrarianSignUpController {
 	private ComboBox<String> cvComboBox;
 	@FXML
 	private ComboBox<String> countryComboBox;
+	@FXML
+	Hyperlink githubLink;
 
 	@FXML
 	public void initialize() {
+		githubLink.setOnAction(e -> {
+		    try {
+		        java.awt.Desktop.getDesktop().browse(new java.net.URI("https://github.com/ecalban"));
+		    } catch (Exception ex) {
+		        ex.printStackTrace();
+		    }
+		});
 		countryComboBox.setPromptText("US +1");
 		ArrayList<Country> countryList = DBtoArrayList.countryToArrayList();
 		for (int i = 0; i < countryList.size(); i++) {

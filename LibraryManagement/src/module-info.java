@@ -8,4 +8,5 @@ module LibraryManagement {
 	opens model to javafx.base;
 	requires java.sql;
 	requires org.postgresql.jdbc;
+	requires java.desktop;
 }

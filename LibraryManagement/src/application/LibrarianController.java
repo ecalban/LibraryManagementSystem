@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -26,9 +27,18 @@ public class LibrarianController {
 
 	@FXML
 	private Button profileButton;
+	@FXML
+	Hyperlink githubLink;
 
 	@FXML
 	public void initialize() {
+		githubLink.setOnAction(e -> {
+		    try {
+		        java.awt.Desktop.getDesktop().browse(new java.net.URI("https://github.com/ecalban"));
+		    } catch (Exception ex) {
+		        ex.printStackTrace();
+		    }
+		});
 		profileButton.setText("▼");
 		FXMLLoader loader = new FXMLLoader(LibrarianController.class.getResource("/view/LibrarianHome2.fxml"));
 		AnchorPane anchorpane;
@@ -81,6 +91,20 @@ public class LibrarianController {
 		popupStage.setResizable(false);
 		popupStage.showAndWait();
 	}
+	
+	@FXML
+	public void librarianChangePassword(ActionEvent event) throws IOException, SQLException {
+		String sql = "SELECT * FROM librarians WHERE isactive = TRUE";
+		LibrarianPasswordPopUpController.rs = executeQuery(sql);
+		Stage popupStage = new Stage();
+		popupStage.initModality(Modality.APPLICATION_MODAL);
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/LibrarianChangePassword.fxml"));
+		Scene scene = new Scene(loader.load());
+		popupStage.setScene(scene);
+		popupStage.setResizable(false);
+		popupStage.showAndWait();
+	}
+	
 
 
 	public void switchToScene(ActionEvent event, String fileName) {

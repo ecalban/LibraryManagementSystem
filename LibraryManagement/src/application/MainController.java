@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
@@ -28,9 +29,18 @@ public class MainController {
 
 	@FXML
 	ComboBox<String> loginUserName;
+	@FXML
+	Hyperlink githubLink;
 
 	@FXML
 	public void initialize() throws SQLException {
+		githubLink.setOnAction(e -> {
+		    try {
+		        java.awt.Desktop.getDesktop().browse(new java.net.URI("https://github.com/ecalban"));
+		    } catch (Exception ex) {
+		        ex.printStackTrace();
+		    }
+		});
 		ArrayList<RememberedUser> userList = DBtoArrayList.rememberedToArrayList();
 		for (int i = 0; i < userList.size(); i++) {
 			loginUserName.getItems().add(userList.get(i).getUserName());
