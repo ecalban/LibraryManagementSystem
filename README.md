@@ -153,7 +153,16 @@ CREATE TABLE studentforapprove (
     studentemail VARCHAR(100)
 );
 ```
+### Tables Supporting GUI Components
 
+Some tables are used to populate ComboBoxes and selection fields in the application.
+
+**1. book_categories**
+```sql
+CREATE TABLE book_categories (
+    category_id SERIAL PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL
+);
 
 
 
