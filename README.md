@@ -180,29 +180,21 @@ CREATE TABLE departments (
 ---
 
 ##Project Structure
-```LibraryManagementSystem/
-├── .gitignore
-├── README.md
-├── LICENSE
-├── module-info.java
+```
+LibraryManagementSystem/
 ├── src/
-│   ├── application/
-│   │   └── Main.java
-│   ├── css/
-│   │   └── style.css
-│   ├── dao/
-│   │   ├── BookDAO.java
-│   │   ├── MemberDAO.java
-│   │   └── BorrowDAO.java
-│   ├── model/
-│   │   ├── Book.java
-│   │   ├── Member.java
-│   │   └── Borrow.java
-│   └── view/
-│       ├── MainView.java
-│       ├── BookView.java
-│       └── MemberView.java
-└── target/ (otomatik olarak oluşturulur)
+│   ├── application/	# JavaFX controllers
+│   │   
+│   ├── css/			# Stylesheets
+│   │   
+│   ├── dao/			# Connection between database and data structures
+│   │   
+│   ├── model/			# Data models (Book, Librarian, Student)
+│   │   
+│   │── view/  			# FXML Files
+│   │   
+│	└── module-info.java
+└──
 ```
 
 
