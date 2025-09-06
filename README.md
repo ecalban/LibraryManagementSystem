@@ -201,13 +201,13 @@ LibraryManagementSystem/
 
 ## Usage Demo
 
-
 https://youtu.be/XlqK1VFVhPw
 
+---
 
+## License
 
-
-
+This project is licensed under the MIT License – see the LICENSE file for details.
 
 
 
