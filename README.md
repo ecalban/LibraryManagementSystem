@@ -82,6 +82,16 @@ git clone https://github.com/yourusername/LibraryManagementSystem.git
 
 > Note: These are the main operations, but the system also supports additional features.
 
+---
 
+## Database Setup
+
+This project uses **PostgreSQL** as the database. Below are the steps to set up the required tables.
+
+### 1. Create the database
+First, create a database for the library system:
+```sql
+CREATE DATABASE librarydb;
+```
 
 
