@@ -122,5 +122,40 @@ CREATE TABLE students (
     studentreturndate VARCHAR[]
 );
 ```
+Books Table
+```sql
+CREATE TABLE books (
+    bookid INTEGER NOT NULL PRIMARY KEY,
+    booktitle VARCHAR(255),
+    bookauthor VARCHAR(255),
+    bookdescription TEXT,
+    bookcategory VARCHAR(100),
+    bookstatus VARCHAR(20) CHECK (bookstatus IN ('Available', 'Unavailable')),
+    bookstock INTEGER CHECK (bookstock >= 0),
+    stockissued INTEGER CHECK (stockissued >= 0),
+    bookswhoissued BIGINT[] DEFAULT '{}'
+);
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
