@@ -153,7 +153,7 @@ CREATE TABLE studentforapprove (
     studentemail VARCHAR(100)
 );
 ```
-## Tables Supporting GUI Components
+# Tables Supporting GUI Components
 
 Some tables are used to populate ComboBoxes and selection fields in the application.
 
@@ -179,7 +179,7 @@ CREATE TABLE departments (
 
 ---
 
-##Project Structure
+## Project Structure
 ```
 LibraryManagementSystem/
 ├── src/
