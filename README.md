@@ -202,7 +202,7 @@ LibraryManagementSystem/
 ## Usage Demo
 
 ```markdown
-[![Watch the demo](https://www.youtube.com/watch?v=E6NO0rgFub4)
+[![Watch the demo](https://img.youtube.com/vi/dQw4w9WgXcQ/0.jpg)](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 ```
 
 
