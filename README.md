@@ -91,7 +91,23 @@ This project uses **PostgreSQL** as the database. Below are the steps to set up 
 ### 1. Create the database
 First, create a database for the library system:
 ```sql
-CREATE DATABASE librarydb;
+CREATE DATABASE LibraryManagementDB;
 ```
+### 2. Create tables
+
+Librarians Table
+```sql
+CREATE TABLE librarians (
+    librarianid INTEGER NOT NULL PRIMARY KEY,
+    librarianfullname VARCHAR(100),
+    librarianphonenumber VARCHAR(50),
+    librarianusername VARCHAR(50),
+    librarianpassword VARCHAR(50),
+    librarianstartdate DATE,
+    librarianemail VARCHAR(100),
+    isactive BOOLEAN DEFAULT FALSE
+);
+```
+
 
 
