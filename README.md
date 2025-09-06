@@ -180,7 +180,7 @@ CREATE TABLE departments (
 ---
 
 ##Project Structure
-LibraryManagementSystem/
+```LibraryManagementSystem/
 ├── .gitignore
 ├── README.md
 ├── LICENSE
@@ -203,7 +203,7 @@ LibraryManagementSystem/
 │       ├── BookView.java
 │       └── MemberView.java
 └── target/ (otomatik olarak oluşturulur)
-
+```
 
 
 
