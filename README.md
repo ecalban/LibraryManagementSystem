@@ -108,6 +108,19 @@ CREATE TABLE librarians (
     isactive BOOLEAN DEFAULT FALSE
 );
 ```
-
+Students Table
+```sql
+CREATE TABLE students (
+    studentid BIGINT NOT NULL PRIMARY KEY,
+    studentfirstname VARCHAR(100),
+    studentlastname VARCHAR(100),
+    studentphonenumber VARCHAR(20),
+    studentdepartment VARCHAR(100),
+    studentemail VARCHAR(150),
+    studentmembershipdate DATE,
+    studentborrowedbooks BIGINT[],
+    studentreturndate VARCHAR[]
+);
+```
 
 
