@@ -18,5 +18,18 @@
 This project is a **Library Management System** developed in **Java** using **JavaFX** for the GUI and **PostgreSQL/MySQL** as the database.  
 The system allows librarians to efficiently manage books, users, and borrowing activities.  
 
+---
+
+## Features
+- **Librarian Login:** Secure authentication for librarians  
+- **Book Management:** Add new books and search the catalog  
+- **Librarian Management:** Register new librarians and update their profiles  
+- **Student Management:** Add, search, and remove library members  
+- **Borrowing & Returning:** Manage borrowing and returning of books, and track due dates  
+- **Search Functionality:** Search for books by title, author, or category  
+
+**Optional / Advanced Features:**  
+- Tooltips and input validation in the GUI  
+- Password reset functionality  
 
 ---
