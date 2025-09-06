@@ -42,3 +42,37 @@ The system allows librarians to efficiently manage books, users, and borrowing a
 - **IDE:** Eclipse
 
 ---
+
+## Installation
+
+### Prerequisites
+- JDK 21 or higher  
+- JavaFX SDK 21.0.8  
+- PostgreSQL  
+
+## Installation
+
+### Prerequisites
+- JDK 21 or higher  
+- JavaFX SDK 21.0.8  
+- PostgreSQL  
+
+### Steps
+1. Clone the repository:  
+```bash
+git clone https://github.com/yourusername/LibraryManagementSystem.git
+2.	Open the project in Eclipse.
+	3.	Add JavaFX libraries to the project:
+	•	Right-click the project → Properties → Java Build Path → Libraries → Add External JARs
+	•	Add the JavaFX JAR files (e.g., javafx-controls-21.0.8.jar, javafx-fxml-21.0.8.jar, etc.)
+	4.	Configure VM arguments for JavaFX:
+	•	Right-click the project → Run As → Run Configurations → Arguments → VM Arguments
+	•	Example:
+
+
+
+
+
+
+
+
