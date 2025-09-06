@@ -33,3 +33,12 @@ The system allows librarians to efficiently manage books, users, and borrowing a
 - Password reset functionality  
 
 ---
+
+## Technologies Used
+- **Programming Language:** Java 21 
+- **GUI Framework:** JavaFX 21.0.8
+- **Database:** PostgreSQL
+- **Build Tool:** plain Java project
+- **IDE:** Eclipse
+
+---
