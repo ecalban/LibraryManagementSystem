@@ -136,12 +136,25 @@ CREATE TABLE books (
     bookswhoissued BIGINT[] DEFAULT '{}'
 );
 ```
-Remembered Users(Stores information of users who selected the “Remember Me” option during login.)
+Remembered Users (Stores information of users who selected the “Remember Me” option during login.)
 ```sql
 CREATE TABLE remembereduser (
     username VARCHAR(100) NOT NULL PRIMARY KEY
 );
 ```
+Students For Approvel (Stores students who have filled out the registration form and are pending approval.)
+```sql
+CREATE TABLE studentforapprove (
+    studentid BIGINT NOT NULL PRIMARY KEY,
+    studentfirstname VARCHAR(50),
+    studentlastname VARCHAR(50),
+    studentphonenumber VARCHAR(20),
+    studentdepartment VARCHAR(100),
+    studentemail VARCHAR(100)
+);
+```
+
+
 
 
 
