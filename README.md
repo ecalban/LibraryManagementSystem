@@ -72,6 +72,15 @@ git clone https://github.com/yourusername/LibraryManagementSystem.git
 
 ---
 
+## Usage
+
+1. Launch the application.  
+2. Sign up as a librarian.  
+3. Log in as a librarian.  
+4. Use the menu to manage books, members, and borrowing/return operations.  
+5. Quickly find books or members using the search features.  
+
+> Note: These are the main operations, but the system also supports additional features.
 
 
 
