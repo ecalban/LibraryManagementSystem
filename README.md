@@ -50,13 +50,6 @@ The system allows librarians to efficiently manage books, users, and borrowing a
 - JavaFX SDK 21.0.8  
 - PostgreSQL  
 
-## Installation
-
-### Prerequisites
-- JDK 21 or higher  
-- JavaFX SDK 21.0.8  
-- PostgreSQL  
-
 ### Steps
 1. Clone the repository:  
 ```bash
