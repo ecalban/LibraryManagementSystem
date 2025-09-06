@@ -177,6 +177,33 @@ CREATE TABLE departments (
 );
 ```
 
+---
+
+##Project Structure
+LibraryManagementSystem/
+├── .gitignore
+├── README.md
+├── LICENSE
+├── module-info.java
+├── src/
+│   ├── application/
+│   │   └── Main.java
+│   ├── css/
+│   │   └── style.css
+│   ├── dao/
+│   │   ├── BookDAO.java
+│   │   ├── MemberDAO.java
+│   │   └── BorrowDAO.java
+│   ├── model/
+│   │   ├── Book.java
+│   │   ├── Member.java
+│   │   └── Borrow.java
+│   └── view/
+│       ├── MainView.java
+│       ├── BookView.java
+│       └── MemberView.java
+└── target/ (otomatik olarak oluşturulur)
+
 
 
 
