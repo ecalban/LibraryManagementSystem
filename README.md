@@ -136,7 +136,12 @@ CREATE TABLE books (
     bookswhoissued BIGINT[] DEFAULT '{}'
 );
 ```
-
+Remembered Users(Stores information of users who selected the “Remember Me” option during login.)
+```sql
+CREATE TABLE remembereduser (
+    username VARCHAR(100) NOT NULL PRIMARY KEY
+);
+```
 
 
 
