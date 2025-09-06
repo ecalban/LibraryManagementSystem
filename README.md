@@ -8,7 +8,7 @@
 5. [Usage](#usage)  
 6. [Database Setup](#database-setup)  
 7. [Project Structure](#project-structure)  
-8. [Screenshots](#screenshots)  
+8. [Usage Demo](#usagedemo)  
 9. [Contributing](#contributing)  
 10. [License](#license)  
 
