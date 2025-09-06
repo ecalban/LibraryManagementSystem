@@ -157,7 +157,7 @@ CREATE TABLE studentforapprove (
 
 Some tables are used to populate ComboBoxes and selection fields in the application.
 
-Book Categories
+--Book Categories
 ```sql
 CREATE TABLE book_categories (
     category_id SERIAL PRIMARY KEY,
