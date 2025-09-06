@@ -72,8 +72,12 @@ git clone https://github.com/yourusername/LibraryManagementSystem.git
 ```
 --module-path "path_to_javafx_lib" --add-modules javafx.controls,javafx.fxml
 ```
+5.	Configure your database connection:
+	•	Open the class where the database connection is established (e.g., DBUtil.java or Main.java)
+	•	Update username, password, and database URL according to your PostgreSQL setup.
+6.	Run the project from Eclipse.
 
-
+---
 
 
 
